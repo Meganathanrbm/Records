@@ -6,13 +6,13 @@ const ProgressCard = ({ img, title, progress }) => {
   return (
     <div className="progressCard">
       <div className="porgressCard__wrapper">
-        <img src={img} alt="" width={"140px"} />
+        <img src={img} alt="" width={"230px"} />
         <h6>
           {title} <IoMdArrowForward />
         </h6>
         <div className="progressCard__wrapper_progress">
           <p>Progress</p>
-          <progress id="file" max="100" value={progress}></progress> 
+          <progress style={{marginRight:"10px"}} id="file" max="100" value={progress}></progress> 
           {progress}%
         </div>
 

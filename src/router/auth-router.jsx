@@ -9,7 +9,7 @@ const Profile = lazy(() => import("../pages/ProfilePage/index"));
 const navigationRoutes = [
   {
     name: "DashBoard",
-    path: "/",
+    path: "/dashboard",
     component: <DashBoard />,
   },
   {

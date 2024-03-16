@@ -40,7 +40,7 @@ const NavigationLayout = () => {
           top: 0,
           height: "100vh",
           overflowY: "auto",
-          width: "22vw",
+          width: "20vw",
         }}
       >
         <section>
@@ -52,7 +52,7 @@ const NavigationLayout = () => {
             {navigationConstants.map((item, index) => {
               return (
                 <li
-                  className={`d-flex  p-2 gap-3 rounded ${
+                  className={`d-flex p-2 gap-3 rounded ${
                     path.pathname == item.path ? styles.activeLink : ""
                   }`}
                   key={index}
@@ -64,7 +64,6 @@ const NavigationLayout = () => {
                     alt={item.name}
                     srcset=""
                   />
-
                   <Link to={item.path}>{item.name}</Link>
                 </li>
               );
@@ -83,7 +82,6 @@ const NavigationLayout = () => {
             </div>
             <Link>Explore More Fetures</Link>
           </section>
-
           <ul className="d-flex flex-column gap-3">
             <li className="d-flex gap-3">
               <img src={help} alt="help" srcset="" />

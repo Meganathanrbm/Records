@@ -27,7 +27,7 @@ function App() {
       element: <NavigationLayout />,
       children: [
         {
-          path: "/",
+          path: "/dashboard",
           element: <DashBoard />,
         },
         {
@@ -56,35 +56,31 @@ function App() {
       path: "/walktrough",
       element: <Walktrough />,
     },
+
   ]);
   return (
     <>
       {/* <RouterProvider router={router} /> */}
       <BrowserRouter>
         <Routes>
-          <Route element={<SuspenseLayout />}>
-            <Route path="/" element={<NavigationLayout />}>
-              {navigationRoutes.map((route, index) => {
-                return (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={route.component}
-                  />
-                );
-              })}
-            </Route>
-            {nonAuthRoutes.map((route, index) => {
-              console.log(route);
-              return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={route.component}
-                />
-              );
-            })}
-          </Route>
+        <Route element={<SuspenseLayout />}>
+  {/* Default route leads to the sign-in page */}
+  <Route path="/" element={<Signin />} />
+
+  {/* Routes for authenticated users */}
+  <Route element={<NavigationLayout />}>
+    {/* Authenticated routes */}
+    {navigationRoutes.map((route, index) => (
+      <Route key={index} path={route.path} element={route.component} />
+    ))}
+  </Route>
+
+  {/* Routes for non-authenticated users */}
+  {nonAuthRoutes.map((route, index) => (
+    <Route key={index} path={route.path} element={route.component} />
+  ))}
+</Route>
+
         </Routes>
       </BrowserRouter>
     </>

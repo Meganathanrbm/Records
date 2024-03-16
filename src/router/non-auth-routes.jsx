@@ -7,7 +7,7 @@ const Walktrough = lazy(() => import("../pages/OnbordingPage/Skills/index"));
 export default [
   {
     name: "Register",
-    path: "/register",
+    path: "/",
     component: <Signin />,
   },
   {

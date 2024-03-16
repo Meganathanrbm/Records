@@ -161,7 +161,7 @@ const Walktrough = () => {
           })}
           {/*  */}
         </div>
-       <Link to={"/"}> <section className="w-100 d-flex justify-content-end p-3">
+       <Link to={"/dashboard"}> <section className="w-100 d-flex justify-content-end p-3">
           <button className="btn btn-primary">Get Started</button>
         </section></Link>
       </div>
