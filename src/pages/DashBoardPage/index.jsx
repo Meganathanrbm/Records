@@ -89,14 +89,14 @@ const DashBoard = () => {
             <div className="dashboard__seciton2_role_wrapper">
               <div className="dashboard__seciton2_role_wrapper_interest">
                 <div className="dashboard__section2__role">
-                  <FaMedal fontSize={30} />
+                  <FaMedal fontSize={40} />
                   <p>22</p>
                 </div>
                 <p>Role Based</p>
               </div>
               <div className="dashboard__seciton2_role_wrapper_interest">
                 <div className="dashboard__section2__role">
-                  <FaMedal fontSize={30} />
+                  <FaMedal fontSize={40} />
                   <p>5</p>
                 </div>
                 <p>Interest Based</p>

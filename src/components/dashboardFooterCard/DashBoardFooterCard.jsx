@@ -8,10 +8,10 @@ const DashboardFooterCard = ({ img, title }) => {
     <div className="dashboardFooterCard">
       <div className="dashboardFooterCard__logo_title">
         <div className="dashboardFooterCard__img">
-          <img src={img} alt="" width={"50px"} />
+          <img src={img} alt="" width={"80px"} />
         </div>
         <div className="dashboardFooterCard__title_p">
-          <h5>{title}</h5>
+          <h5 style={{fontWeight:"bold"}}>{title}</h5>
           <p>
             Connect Your Udemy and bring all your <br /> learning and
             certifications
@@ -21,7 +21,7 @@ const DashboardFooterCard = ({ img, title }) => {
           {title === "Udemy" ? (
             <MdDownloadDone
               className="dahsboardFooterCard__check"
-              fontSize={30}
+              fontSize={20}
             />
           ) : (
             <IoMdAdd className="dashboardFooterCard__icon" fontSize={30} />

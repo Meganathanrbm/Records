@@ -42,7 +42,7 @@
 .dashboard__header {
   margin-top: 20px;
   background: url("../../assets/bg.avif");
-  padding: 20px 200px 20px 50px;
+  padding: 20px 180px 20px 50px;
   border-radius: 10px;
   color: white;
   background-size: cover;
@@ -66,7 +66,7 @@
 .dashboard__container3_seeAll {
   position: relative;
   top: 150px;
-  left: 60px;
+  /* left: 60px; */
   color: blue;
 }
 
