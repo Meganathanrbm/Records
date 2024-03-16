@@ -3,11 +3,13 @@
   border: 1px solid lightgray;
   margin-bottom: 20px;
   border-radius: 10px;
+  width: 90%;
 }
 
 .learningCard__wrapper {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .learningCard__wrapper img {
@@ -25,7 +27,7 @@
 
 .learningCard__progress_per {
   display: flex;
-  width: 420px;
+  width: 100%;
 }
 
 .learningCard__progress_per p {
@@ -41,10 +43,9 @@
   outline: none;
   background-color: blue;
   color: white;
-  width: fit-content;
-  height: 30px;
   border-radius: 5px;
   margin-left: 20px;
+  padding: 8px;
 }
 
 .learningCard__button {

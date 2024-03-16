@@ -12,7 +12,7 @@ const Learning = () => {
   return (
     <div className="learning__wrapper">
       <div className="learning__section">
-        <h4>My Language</h4>
+        <h4 className="pb-3">My Learnings</h4>
         <div className="learning__card_section">
           <LearningCard val={70} />
           <LearningCard val={20} />

@@ -58,9 +58,9 @@ function App() {
     },
   ]);
   return (
-    <>
+    <div className="main">
       {/* <RouterProvider router={router} /> */}
-      <BrowserRouter>
+      <BrowserRouter >
         <Routes>
           <Route element={<SuspenseLayout />}>
             <Route path="/" element={<NavigationLayout />}>
@@ -87,7 +87,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

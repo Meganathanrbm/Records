@@ -26,7 +26,7 @@ const Signin = () => {
       ) : (
         <div
           className={`container bg-white position-absolute  top-50 start-50 translate-middle d-flex p-2 rounded min-vh-80 border `}
-          style={{ width: "max-content" }}
+          style={{ width: "900px" }}
         >
           <div className="container bg-primary w-50 d-flex flex-column justify-content-start align-items-start  p-5 gap-4 rounded">
             <img src={logo} alt="" srcset="" />
@@ -44,7 +44,7 @@ const Signin = () => {
 
           <div className="conatiner w-50 d-flex flex-column justify-content-center align-items-center gap-3 text-black">
             <section className="d-flex flex-column justify-content-center align-items-center">
-              <h1>Sigin In</h1>
+              <h1>Sign In</h1>
               <p>Let’s open your skill repository.</p>
             </section>
 
@@ -65,7 +65,7 @@ const Signin = () => {
                   placeholder="Password"
                 />
               </div>
-              <Link to={"/onboarding"}> <button type="button" className="btn btn-primary">
+              <Link to={"/onboarding"}> <button style={{width:"100%"}} type="button" className="btn btn-primary">
                 Sign In
               </button></Link>
             </section>
@@ -92,7 +92,7 @@ const Signin = () => {
               </label>
             </div>
 
-            <h6>Don’t have an account? Contact Administrator</h6>
+            <h6 style={{fontSize:"12px"}}>Don’t have an account? <span style={{fontWeight:"bold"}}>Contact Administrator</span></h6>
           </div>
         </div>
       )}
