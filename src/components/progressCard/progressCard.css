@@ -1,0 +1,32 @@
+.porgressCard__wrapper {
+  border: 1px solid lightgray;
+  width: fit-content;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.porgressCard__wrapper img {
+  border-radius: 10px;
+}
+
+.porgressCard__wrapper h6 {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.porgressCard__wrapper h6 svg {
+  color: gray;
+}
+
+.progressCard__wrapper_progress p {
+  margin: 0;
+}
+
+.progressCard__wrapper_progress progress {
+  margin-right: 10px;
+}
+
+.progressCard__wrapper_progress small {
+  color: gray;
+}

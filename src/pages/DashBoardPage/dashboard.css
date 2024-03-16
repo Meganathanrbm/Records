@@ -1,0 +1,249 @@
+.dashboard {
+  padding: 10px 20px;
+}
+
+.dashboard__wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: 20px;
+  position: relative;
+}
+
+.dashboard__welcome_board h1 {
+  font-weight: bold;
+}
+
+.dashboard__welcome_board button {
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background-color: orangered;
+}
+
+.dashboard__input {
+  border: 1px solid lightgray;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.dashboard__input svg {
+  margin-right: 10px;
+}
+
+.dashboard__input input {
+  border: none;
+  outline: none;
+}
+
+.dashboard__header {
+  margin-top: 20px;
+  background: url("../../assets/bg.avif");
+  padding: 20px 200px 20px 50px;
+  border-radius: 10px;
+  color: white;
+  background-size: cover;
+}
+
+.dashboard__header button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.dashboard__header button svg {
+  color: gray;
+}
+
+.dashboard__container2 {
+  margin-top: 20px;
+}
+
+.dashboard__container3_seeAll {
+  position: relative;
+  top: 150px;
+  left: 60px;
+  color: blue;
+}
+
+.dashboard__container2 h4 {
+  font-weight: bold;
+}
+
+.dashboard__container2_progress {
+  display: flex;
+  gap: 10px;
+}
+
+.dashboard__container3__wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.dashboard__container3_cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.dashbord__container3__dropdown {
+  margin-top: 20px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+  color: gray;
+  font-weight: bold;
+}
+
+.dashbord__container3__dropdownMenu select {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: gray;
+}
+
+.dashboard__seciton2 {
+  margin-left: 20px;
+  width: 16vw;
+}
+
+.dashboard__seciton2 h4 {
+  font-weight: bold;
+}
+
+.dashboard__section2_header {
+  display: flex;
+  color: gray;
+  justify-content: end;
+}
+
+.dashboard__section2__add {
+  background-color: orangered;
+  color: white;
+  border-radius: 5px;
+}
+
+.dashboard__section2_popover {
+  border: 1px solid lightgray;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+  right: 125px;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.dashboardToogleNotification {
+  position: fixed;
+  z-index: 1;
+}
+
+.dashboard__section2_popover ul {
+  padding: 0;
+}
+
+.dashboard__section2_popover_svg {
+  font-size: 20px;
+  margin-right: 10px;
+  color: orangered;
+}
+
+.dashboard__section2_header svg {
+  margin-left: 20px;
+}
+
+.dashboard__seciton2_role_wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.dashboard__seciton2_role_wrapper_interest {
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+  color: gray;
+  width: 200px;
+}
+
+.dashboard__section2__role {
+  display: flex;
+  align-items: center;
+  color: orangered;
+}
+
+.dashboard__section2__role svg {
+  border: 1px solid white;
+  border-radius: 100%;
+  background-color: orangered;
+  color: white;
+}
+
+.dashboard__section2__role p {
+  font-weight: bold;
+  font-size: 30px;
+  position: relative;
+  top: 5px;
+  margin-left: 10px;
+}
+
+.progress-bar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(orange 41%, orangered 0);
+}
+
+.dashboare__section2_val {
+  font-weight: bold;
+  position: relative;
+  top: 7px;
+}
+
+.dashboard__section2_learningGoal {
+  border: 1px solid lightgray;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.dashboard__section2_text {
+  margin-left: 20px;
+}
+.dashboard__section2_text h4 {
+  font-weight: normal;
+}
+
+.dashboard__section2_text p {
+  font-size: 20px;
+  color: gray;
+}
+
+.dashboard__section2_active,
+.dashboard__section2_performance {
+  margin-top: 20px;
+}
+
+.dashboard__section2_performance {
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.dashboard__section2_performance p {
+  font-size: 30px;
+  color: greenyellow;
+}
+
+.dashboard__section2_performance p svg {
+  margin-right: 20px;
+}

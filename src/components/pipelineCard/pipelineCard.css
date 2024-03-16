@@ -1,0 +1,49 @@
+.pipelineCard {
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  position: relative;
+}
+
+.pipelineCard__wrapper {
+  display: flex;
+}
+
+.pipelineCard__img {
+  padding-right: 20px;
+}
+
+.pipelineCard__text h6 {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.pipelineCard__text small {
+  color: gray;
+}
+
+.pipelineCard__text div {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.pipelineCard__text div {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.pipelineCard__text div p {
+  top: 9px;
+  left: 5px;
+}
+
+.pipelineCard svg {
+  color: gray;
+}

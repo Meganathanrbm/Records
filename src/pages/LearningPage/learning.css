@@ -1,0 +1,112 @@
+.learning {
+  padding: 10px;
+  width: 100%;
+}
+
+.learning__section h4 {
+  font-weight: bold;
+}
+
+.learning__section {
+  margin-top: 20px;
+}
+
+.learning__wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.learning__card_section {
+  width: 45vw;
+}
+
+.learning__section2 {
+  width: 100%;
+}
+
+.learning__section2__button button {
+  border: none;
+  color: white;
+  background-color: orangered;
+  /* height: 25px; */
+  border-radius: 5px;
+  position: relative;
+  left: 60%;
+  padding: 8px;
+}
+
+.learning__section2 .progress-bar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(orange 45%, red 0);
+}
+
+.learning__section2 p {
+  position: relative;
+  top: 10%;
+}
+
+.learing__section2_learningGoal {
+  border: 1px solid lightgray;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.searning__section2_goal {
+  display: flex;
+  margin-left: 20px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.searning__section2_goal svg {
+  color: gray;
+}
+
+.searning__section2_goal h4 {
+  font-weight: bold;
+}
+
+.searning__section2_goal p,
+.searning__section2_goal small {
+  color: gray;
+}
+
+.learning__pipeline {
+  margin-top: 20px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.learning__pipeline h4 {
+  font-weight: bold;
+}
+
+.learning__completed {
+  margin-top: 20px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.learning__completed h4 {
+  font-weight: bold;
+}
+
+.learning__completed h4 svg {
+  background-color: greenyellow;
+  border-radius: 100%;
+  color: white;
+  height: 30px;
+  width: 30px;
+}

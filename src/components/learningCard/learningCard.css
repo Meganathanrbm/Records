@@ -1,0 +1,61 @@
+.learningCard {
+  padding: 20px;
+  border: 1px solid lightgray;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.learningCard__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.learningCard__wrapper img {
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.learningCard__content h6 {
+  font-weight: bold;
+}
+
+.learningCard__progress progress {
+  width: 100%;
+}
+
+.learningCard__progress_per {
+  display: flex;
+  width: 420px;
+}
+
+.learningCard__progress_per p {
+  padding-left: 20px;
+}
+
+.learningCard__progress p {
+  margin: 0;
+}
+
+.learningCard__wrapper button {
+  border: none;
+  outline: none;
+  background-color: blue;
+  color: white;
+  width: fit-content;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.learningCard__button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.learningCard__button {
+  color: gray;
+}
+
+.learningCard__button span {
+  font-weight: bold;
+}

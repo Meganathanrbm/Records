@@ -1,0 +1,35 @@
+.dashboardFooterCard__logo_title {
+  display: flex;
+  align-items: center;
+  border: 1px solid lightgray;
+  gap: 5px;
+  margin-top: 20px;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.dashboardFooterCard__icons {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dashboardFooterCard__icon {
+  color: white;
+  background-color: orangered;
+  border-radius: 5px;
+}
+
+.dahsboardFooterCard__check {
+  background-color: greenyellow;
+  border-radius: 100%;
+  color: white;
+}
+
+.dashboardFooterCard__title_p h5 {
+  font-weight: bold;
+}
+
+.dashboardFooterCard__title_p p {
+  color: gray;
+}
