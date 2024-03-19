@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import userImage from "../../assets/svg/userImage.svg";
 import BasicProfile from "../../components/BasicProfile";
 import EducationProfile from "../../components/EducationProfile";
@@ -8,8 +8,34 @@ import LicenseProfile from "../../components/LicenseProfile";
 import ProjectProfile from "../../components/ProjectProfile";
 import "./ProfilePage.css";
 import SkillProfile from "../../components/SkillProfile";
+import currentUserState from "../../store/user.store";
+import { useRecoilState } from "recoil";
+import userApi from "../../apis/user.api";
+
 const Profile = () => {
   const [profileType, setProfileType] = useState("basic");
+  const [userProfile, setUserProfile] = useState({});
+  const [currentLoggedInUser, setCurrentLoggedInUser] =
+    useRecoilState(currentUserState);
+
+  useEffect(() => {
+    userApi.handlegetProfile({
+      payload: {
+        userId: currentLoggedInUser.userId,
+      },
+      success: (response) => {
+        setUserProfile(response.data.data);
+      },
+      error: (error) => {
+        console.log("error", error);
+      },
+    });
+  }, []);
+
+  function handleOnclick(type) {
+    setProfileType(type);
+  }
+
   return (
     <div className="row">
       <div
@@ -44,49 +70,49 @@ const Profile = () => {
         >
           <li
             style={{ cursor: "pointer" }}
-            onClick={() => setProfileType("basic")}
+            onClick={() => handleOnclick("basic")}
             className={profileType == "basic" ? "colored" : " "}
           >
             Basic Profile
           </li>
           <li
             style={{ cursor: "pointer" }}
-            onClick={() => setProfileType("education")}
+            onClick={() => handleOnclick("education")}
             className={profileType == "education" ? "colored" : " "}
           >
             Education
           </li>
           <li
             style={{ cursor: "pointer" }}
-            onClick={() => setProfileType("work")}
+            onClick={() => handleOnclick("work")}
             className={profileType == "work" ? "colored" : " "}
           >
             Work Experience
           </li>
           <li
             style={{ cursor: "pointer" }}
-            onClick={() => setProfileType("license")}
+            onClick={() => handleOnclick("license")}
             className={profileType == "license" ? "colored" : " "}
           >
             Licenses & Certifications
           </li>
           <li
             style={{ cursor: "pointer" }}
-            onClick={() => setProfileType("skill")}
+            onClick={() => handleOnclick("skill")}
             className={profileType == "skill" ? "colored" : " "}
           >
             Skill Repository
           </li>
           <li
             style={{ cursor: "pointer" }}
-            onClick={() => setProfileType("project")}
+            onClick={() => handleOnclick("project")}
             className={profileType == "project" ? "colored" : " "}
           >
             Projects
           </li>
           <li
             style={{ cursor: "pointer" }}
-            onClick={() => setProfileType("other")}
+            onClick={() => handleOnclick("other")}
             className={profileType == "other" ? "colored" : " "}
           >
             other activities
@@ -94,19 +120,39 @@ const Profile = () => {
         </ul>
       </div>
       <div className="col col-8 px-4">
-        <div className="row">{profileType === "basic" && <BasicProfile />}</div>
         <div className="row">
-          {profileType === "education" && <EducationProfile />}
+          {profileType === "basic" && (
+            <BasicProfile userProfile={userProfile} />
+          )}
         </div>
-        <div className="row">{profileType === "work" && <WorkProfile />}</div>
         <div className="row">
-          {profileType === "license" && <LicenseProfile />}
+          {profileType === "education" && (
+            <EducationProfile userProfile={userProfile} />
+          )}
         </div>
-        <div className="row">{profileType === "skill" && <SkillProfile />}</div>
         <div className="row">
-          {profileType === "project" && <ProjectProfile />}
+          {profileType === "work" && <WorkProfile userProfile={userProfile} />}
         </div>
-        <div className="row">{profileType === "other" && <OtherProfile />}</div>
+        <div className="row">
+          {profileType === "license" && (
+            <LicenseProfile userProfile={userProfile} />
+          )}
+        </div>
+        <div className="row">
+          {profileType === "skill" && (
+            <SkillProfile userProfile={userProfile} />
+          )}
+        </div>
+        <div className="row">
+          {profileType === "project" && (
+            <ProjectProfile userProfile={userProfile} />
+          )}
+        </div>
+        <div className="row">
+          {profileType === "other" && (
+            <OtherProfile userProfile={userProfile} />
+          )}
+        </div>
       </div>
     </div>
   );

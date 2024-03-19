@@ -11,6 +11,9 @@ import styles from "./navigation.module.css";
 import plusIcon from "../../assets/svg/plusIcon.svg";
 import notificationIcon from "../../assets/svg/notification.svg";
 
+import { useRecoilState } from "recoil";
+import currentUserState from "../../store/user.store";
+
 const NavigationLayout = () => {
   const notification = false;
   const dropdown = [
@@ -30,6 +33,9 @@ const NavigationLayout = () => {
     },
   ];
   const path = useLocation();
+
+  const [currentLoggedInUser, setCurrentLoggedInUser] =
+    useRecoilState(currentUserState);
   return (
     <div className="d-flex min-vh-100">
       <nav
@@ -50,6 +56,7 @@ const NavigationLayout = () => {
           >
             <img src={dashBoardlogo} alt="logo" className="mb-4" />
             {navigationConstants.map((item, index) => {
+              console.log("currentLoggedInUser", currentLoggedInUser);
               return (
                 <li
                   className={`d-flex p-2 gap-3 rounded ${
@@ -64,7 +71,15 @@ const NavigationLayout = () => {
                     alt={item.name}
                     srcset=""
                   />
-                  <Link to={item.path}>{item.name}</Link>
+                  <Link
+                    to={
+                      item.path === "/profile"
+                        ? `/profile/${currentLoggedInUser.userId}`
+                        : item.path
+                    }
+                  >
+                    {item.name}
+                  </Link>
                 </li>
               );
             })}

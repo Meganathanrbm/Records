@@ -1,12 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+
+import authApi from "../../apis/auth.api";
+
+import currentUserState from "../../store/user.store";
+
 import sigin from "../../assets/svg/sigin.svg";
 import logo from "../../assets/svg/logo.svg";
 import logo2 from "../../assets/svg/forgotpassword.svg";
 import styles from "./register.module.css";
 
 const Signin = () => {
+  const navigate = useNavigate();
   const [forgetPassword, setForgetPassword] = useState(false);
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [isUserNotAuthenticated, setIsUserNotAuthenticated] = useState(false);
+  const [currentLoggedInUser, setCurrentLoggedInUser] =
+    useRecoilState(currentUserState);
+
+  function handleLogin() {
+    authApi.handleLogin({
+      payload: userData,
+      success: (res) => {
+        console.log("Login Success", res);
+        setCurrentLoggedInUser({
+          ...currentLoggedInUser,
+          email: userData.email,
+          isLoggedIn: true,
+        });
+        navigate("/onboarding");
+      },
+      error: (err) => {
+        message.error(
+          err?.response?.data?.message || "Email or Password may incorrect!"
+        );
+        console.log("Login Error", err);
+      },
+    });
+  }
+
+  const checkIfUserIsLoggedIn = () => {
+    if (!currentLoggedInUser.isLoggedIn) {
+      authApi.verifySession({
+        success: () => {
+          navigate("/dashboard");
+        },
+        error: () => {
+          setIsUserNotAuthenticated(true);
+        },
+      });
+    } else {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    checkIfUserIsLoggedIn();
+  }, []);
+
+  // if (isUserNotAuthenticated) {
+  //   return <h1>Please Login</h1>;
+  // }
+
   return (
     <div
       className="container-fluid min-vh-100 d-flex text-light "
@@ -55,6 +111,10 @@ const Signin = () => {
                   className="form-control"
                   id="formGroupExampleInput"
                   placeholder="Email"
+                  value={userData.email}
+                  onChange={(e) =>
+                    setUserData({ ...userData, email: e.target.value })
+                  }
                 />
               </div>
               <div className="mb-3">
@@ -63,11 +123,22 @@ const Signin = () => {
                   className="form-control"
                   id="formGroupExampleInput2"
                   placeholder="Password"
+                  value={userData.password}
+                  onChange={(e) =>
+                    setUserData({ ...userData, password: e.target.value })
+                  }
                 />
               </div>
-              <Link to={"/onboarding"}> <button style={{width:"100%"}} type="button" className="btn btn-primary">
+              {/* <Link to={"/onboarding"}> */}{" "}
+              <button
+                style={{ width: "100%" }}
+                type="button"
+                className="btn btn-primary"
+                onClick={handleLogin}
+              >
                 Sign In
-              </button></Link>
+              </button>
+              {/* </Link> */}
             </section>
 
             <div className="d-flex justify-content-between gap-5 ">
@@ -92,7 +163,10 @@ const Signin = () => {
               </label>
             </div>
 
-            <h6 style={{fontSize:"12px"}}>Don’t have an account? <span style={{fontWeight:"bold"}}>Contact Administrator</span></h6>
+            <h6 style={{ fontSize: "12px" }}>
+              Don’t have an account?{" "}
+              <span style={{ fontWeight: "bold" }}>Contact Administrator</span>
+            </h6>
           </div>
         </div>
       )}
@@ -101,8 +175,22 @@ const Signin = () => {
 };
 
 function ForgetPassword() {
-  const [email, setEmail] = useState(true);
+  const [nextPage, setNextPage] = useState(true);
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
+  function sendVerifcationLink() {
+    setNextPage(false);
+    authApi.handleVerificationEmail({
+      payload: { email },
+      success: (res) => {
+        console.log("Verification Email Success", res);
+      },
+      error: (err) => {
+        console.log("Verification Email Error", err);
+      },
+    });
+  }
 
   return (
     <div
@@ -119,7 +207,7 @@ function ForgetPassword() {
         <section className="d-flex flex-column justify-content-center align-items-center gap-3 mb-5 w-100 ">
           <img src={logo2} alt="" />
           <h1>Forget Password ?</h1>
-          {email ? (
+          {nextPage ? (
             <>
               <p className={styles.forgotPasswordPara}>
                 Don't worry! Resetting your password is simple. Just type in the
@@ -132,12 +220,14 @@ function ForgetPassword() {
                     className="form-control"
                     id="formGroupExampleInput"
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={(e) => setEmail(false)}
+                  onClick={sendVerifcationLink}
                 >
                   Send
                 </button>
