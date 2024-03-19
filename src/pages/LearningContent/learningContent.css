@@ -5,9 +5,14 @@
 
 .learningContent__wrapper {
   display: flex;
+  gap: 15px;
 }
 
 .learningContent__section {
+  width: 100%;
+}
+
+.learningContent__section2 {
   width: 100%;
 }
 
@@ -27,12 +32,12 @@
 
 .learningContent__video {
   background: url("../../assets/videoThumbnail.jpg");
-  width: 1000px;
-  height: 500px;
+  width: 800px;
+  height: 420px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 10px;
+  border-radius: 15px;
   color: white;
   text-align: center;
 }
@@ -60,6 +65,7 @@
   top: 35%;
   left: 45%;
 }
+
 .learningContent__video svg {
   color: white;
 }
@@ -105,8 +111,4 @@
   border-radius: 10px;
   width: 40px;
   height: 40px;
-}
-
-.learningContent__section2 {
-  width: 100%;
 }

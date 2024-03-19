@@ -30,6 +30,7 @@ const NavigationLayout = () => {
     },
   ];
   const path = useLocation();
+  console.log(path);
   return (
     <div className="d-flex min-vh-100">
       <nav
@@ -41,18 +42,19 @@ const NavigationLayout = () => {
           height: "100vh",
           overflowY: "auto",
           width: "20vw",
+          border: "1px solid lightgray",
         }}
       >
         <section>
           <ul
-            className="d-flex flex-column gap-3"
+            className="d-flex flex-column   gap-0"
             style={{ color: "rgba(143, 143, 143, 1)" }}
           >
             <img src={dashBoardlogo} alt="logo" className="mb-4" />
             {navigationConstants.map((item, index) => {
               return (
                 <li
-                  className={`d-flex p-2 gap-3 rounded ${
+                  className={`d-flex align-items-center p-2 gap-3 rounded ${
                     path.pathname == item.path ? styles.activeLink : ""
                   }`}
                   key={index}
@@ -62,6 +64,7 @@ const NavigationLayout = () => {
                       path.pathname == item.path ? item.activeIcon : item.icon
                     }
                     alt={item.name}
+                    height={15}
                     srcset=""
                   />
                   <Link to={item.path}>{item.name}</Link>
@@ -73,14 +76,16 @@ const NavigationLayout = () => {
 
         <section>
           <section
-            className="d-flex flex-column bg-white p-3"
+            className="d-flex flex-column bg-white p-4"
             style={{ width: "max-content" }}
           >
-            <div className="d-flex justify-content-center align-items-center gap-3">
-              <img src={gift} alt="" srcset="" />
-              <p className="fw-semibold">Free Gifts awaits You!</p>
+            <div className="d-flex justify-content-center align-items-center ">
+              <img className="mb-1" src={gift} alt="" srcset="" />
+              <p className="fw-semibold px-3  mb-1">Free Gifts awaits You!</p>
             </div>
-            <Link>Explore More Fetures</Link>
+            <Link className="" style={{ fontSize: "15px" }}>
+              Explore More Fetures
+            </Link>
           </section>
           <ul className="d-flex flex-column gap-3">
             <li className="d-flex gap-3">
@@ -121,7 +126,7 @@ const NavigationLayout = () => {
               >
                 <i class="bi bi-plus"></i>
               </button>
-              <ul class="dropdown-menu ">
+              <ul class="dropdown-menu mr-3">
                 {dropdown.map((item, index) => {
                   return (
                     <li key={index}>
@@ -142,7 +147,7 @@ const NavigationLayout = () => {
 
             <div class="dropdown">
               <i
-                class="bi bi-bell-fill "
+                class="bi bi-bell-fill btn"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               ></i>

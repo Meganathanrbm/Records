@@ -4,7 +4,7 @@ import onboarding from "../../assets/svg/onbording.svg";
 
 const Onboarding = () => {
   return (
-    <div className="d-flex flex-column justify-content-around align-items-center min-vh-100 p-3">
+    <div className="d-flex flex-column justify-content-around align-items-center p-4 min-vh-100 ">
       <section className="d-flex  justify-content-end align-items-center w-100">
         {/* <button className="btn btn-secondary mb-3 d-flex gap-2">
           Go Back

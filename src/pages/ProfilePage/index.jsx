@@ -37,10 +37,8 @@ const Profile = () => {
           style={{
             textTransform: "capitalize",
             color: "#8F8F8F",
-            fontWeight: "500",
-            fontSize: "20px",
           }}
-          className="d-flex flex-column gap-4 pt-4 "
+          className="d-flex flex-column gap-3 mt-4 profile_ul "
         >
           <li
             style={{ cursor: "pointer" }}
@@ -93,7 +91,7 @@ const Profile = () => {
           </li>
         </ul>
       </div>
-      <div className="col col-8 px-4">
+      <div className="col col-8 px-4 ">
         <div className="row">{profileType === "basic" && <BasicProfile />}</div>
         <div className="row">
           {profileType === "education" && <EducationProfile />}

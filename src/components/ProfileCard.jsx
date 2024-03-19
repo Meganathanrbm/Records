@@ -15,7 +15,7 @@ const ProfileCard = ({
 }) => {
   return (
     <div
-      className="my-4 row gx-2 rounded-4 px-4 py-2"
+      className="my-4 row gx-2 rounded-4 p-4"
       style={{ border: "1px solid #1212124D", position: "relative" }}
     >
       <div className="col-1">
@@ -55,11 +55,12 @@ const ProfileCard = ({
                 <button
                   style={{
                     background: "#F9F9F9",
-                    color: "#F04F52",
+                    color: "#929292",
                     border: "none",
                     borderRadius: "16px",
                     paddingBlock: "4px",
                     paddingInline: "12px",
+                    fontWeight: "500",
                   }}
                   key={index}
                 >
