@@ -56,31 +56,33 @@ function App() {
       path: "/walktrough",
       element: <Walktrough />,
     },
-
   ]);
   return (
     <>
       {/* <RouterProvider router={router} /> */}
       <BrowserRouter>
         <Routes>
-        <Route element={<SuspenseLayout />}>
-  {/* Default route leads to the sign-in page */}
-  <Route path="/" element={<Signin />} />
+          <Route element={<SuspenseLayout />}>
+            {/* Default route leads to the sign-in page */}
+            <Route path="/" element={<Signin />} />
 
-  {/* Routes for authenticated users */}
-  <Route element={<NavigationLayout />}>
-    {/* Authenticated routes */}
-    {navigationRoutes.map((route, index) => (
-      <Route key={index} path={route.path} element={route.component} />
-    ))}
-  </Route>
+            {/* Routes for authenticated users */}
+            <Route element={<NavigationLayout />}>
+              {/* Authenticated routes */}
+              {navigationRoutes.map((route, index) => (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={route.component}
+                />
+              ))}
+            </Route>
 
-  {/* Routes for non-authenticated users */}
-  {nonAuthRoutes.map((route, index) => (
-    <Route key={index} path={route.path} element={route.component} />
-  ))}
-</Route>
-
+            {/* Routes for non-authenticated users */}
+            {nonAuthRoutes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.component} />
+            ))}
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

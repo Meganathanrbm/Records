@@ -14,7 +14,11 @@ const Profile = () => {
     <div className="row">
       <div
         className="col col-4 rounded-4 pt-2"
-        style={{ border: "1px solid #1212124D", minHeight: "80vh" }}
+        style={{
+          border: "1px solid #1212124D",
+          width: "20vw",
+          minHeight: "80vh",
+        }}
       >
         <div className="row d-flex flex-column  align-items-center text-center ">
           <img

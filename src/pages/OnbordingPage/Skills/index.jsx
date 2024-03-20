@@ -29,8 +29,8 @@ const Walktrough = () => {
   }
 
   return (
-    <div className="d-flex min-vh-100">
-      <div className="p-4 gap-3 ">
+    <div className="d-flex  min-vh-100">
+      <div className="p-4  gap-3 ">
         <Link to="/onboarding">
           <button className="btn btn-secondary mb-3 d-flex gap-2">
             <i class="bi bi-caret-left"></i>Go Back
@@ -51,7 +51,7 @@ const Walktrough = () => {
 
       <div
         className=" w-100 d-flex flex-column justify-content-around align-items-center"
-        style={{ background: "rgba(237, 242, 246, 1)" }}
+        style={{ background: "rgba(237, 242, 246, 1)", paddingRight: "10px" }}
       >
         <section className="w-100 d-flex flex-column px-4  justify-content-center align-items-center">
           <div
@@ -165,12 +165,11 @@ const Walktrough = () => {
           })}
           {/*  */}
         </div>
-        <Link to={"/dashboard"}>
-          {" "}
-          <section className="w-100 d-flex justify-content-end p-3">
+        <section className="w-100 d-flex justify-content-end p-3">
+          <Link to={"/dashboard"}>
             <button className="btn btn-primary">Get Started</button>
-          </section>
-        </Link>
+          </Link>
+        </section>
       </div>
     </div>
   );
