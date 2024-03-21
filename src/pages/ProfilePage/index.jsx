@@ -37,13 +37,13 @@ const Profile = () => {
   }
 
   return (
-    <div className="row">
+    <div className="row d-flex justify-content-around">
       <div
         className="col col-4 rounded-4 pt-2"
         style={{
           border: "1px solid #1212124D",
           width: "20vw",
-          minHeight: "80vh",
+          height: "85vh",
         }}
       >
         <div className="row d-flex flex-column  align-items-center text-center ">
@@ -123,8 +123,6 @@ const Profile = () => {
       </div>
 
       <div className="col col-8 px-4 ">
-        <div className="row">{profileType === "basic" && <BasicProfile />}</div>
-
         <div className="row">
           {profileType === "basic" && (
             <BasicProfile userProfile={userProfile} />

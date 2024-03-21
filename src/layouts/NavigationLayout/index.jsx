@@ -34,7 +34,6 @@ const NavigationLayout = () => {
   ];
   const path = useLocation();
 
-
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
 
@@ -47,8 +46,7 @@ const NavigationLayout = () => {
           position: "sticky",
           top: 0,
           height: "100vh",
-          overflowY: "auto",
-          width: "20vw",
+          width: "18vw",
           border: "1px solid lightgray",
         }}
       >
@@ -63,13 +61,15 @@ const NavigationLayout = () => {
               return (
                 <li
                   className={`d-flex align-items-center p-2 gap-3 rounded ${
-                    path.pathname == item.path ? styles.activeLink : ""
+                    path.pathname.includes(item.path) ? styles.activeLink : ""
                   }`}
                   key={index}
                 >
                   <img
                     src={
-                      path.pathname == item.path ? item.activeIcon : item.icon
+                      path.pathname.includes(item.path)
+                        ? item.activeIcon
+                        : item.icon
                     }
                     alt={item.name}
                     height={15}

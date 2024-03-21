@@ -83,7 +83,7 @@ const Signin = () => {
       ></div>
 
       {forgetPassword ? (
-        <ForgetPassword />
+        <ForgetPassword setForgetPassword={setForgetPassword} />
       ) : (
         <div
           className={`container bg-white position-absolute  top-50 start-50 translate-middle d-flex p-2 rounded min-vh-80 border `}
@@ -122,17 +122,32 @@ const Signin = () => {
                   }
                 />
               </div>
-              <div className="mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  id="formGroupExampleInput2"
-                  placeholder="Password"
-                  value={userData.password}
-                  onChange={(e) =>
-                    setUserData({ ...userData, password: e.target.value })
-                  }
-                />
+              {/* </Link> */}
+              <div className="mb-3  input-group   ">
+                <div
+                  style={{ padding: " 0px" }}
+                  className="form-control d-flex  justify-content-center  align-items-center "
+                >
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    className=""
+                    style={{ width: "160px" }}
+                    id="formGroupExampleInput2"
+                    placeholder="Password"
+                    value={userData.password}
+                    onChange={(e) =>
+                      setUserData({ ...userData, password: e.target.value })
+                    }
+                  />
+
+                  <button
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    class="btn "
+                    type="button"
+                  >
+                    <FaRegEyeSlash />
+                  </button>
+                </div>
               </div>
               {/* <Link to={"/onboarding"}> */}{" "}
               <button
@@ -144,38 +159,6 @@ const Signin = () => {
                 Sign In
               </button>
               {/* </Link> */}
-              {/* //               <div className="mb-3  input-group   ">
-//                 <div
-//                   style={{ padding: " 0px" }}
-//                   className="form-control d-flex  justify-content-center  align-items-center "
-//                 >
-//                   <input
-//                     type={showPassword ? "text" : "password"}
-//                     className=""
-//                     style={{ width: "160px" }}
-//                     id="formGroupExampleInput2"
-//                     placeholder="Password"
-//                   />
-
-//                   <button
-//                     onClick={() => setShowPassword((prev) => !prev)}
-//                     class="btn "
-//                     type="button"
-//                   >
-//                     <FaRegEyeSlash />
-//                   </button>
-//                 </div>
-//               </div>
-//               <Link to={"/onboarding"}>
-//                 {" "}
-//                 <button
-//                   style={{ width: "100%" }}
-//                   type="button"
-//                   className="btn btn-primary"
-//                 >
-//                   Sign In
-//                 </button>
-//               </Link> */}
             </section>
 
             <div className="d-flex justify-content-between gap-5 ">

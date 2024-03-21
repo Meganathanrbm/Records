@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./learningContent.css";
 import {
   IoIosArrowBack,
@@ -9,8 +9,21 @@ import {
 import { FaPlay } from "react-icons/fa";
 import LearningContentCard from "../../components/learningContentCard/LearningContentCard";
 import LearningContentSection from "../../components/learningContentSection2/LearningContentSection";
+import youtubeApi from "../../apis/youtube.api";
 
 const LearningContent = () => {
+  useEffect(() => {
+    youtubeApi.handleGetCourseById({
+      payload: { courseId: "615b6b1b2b4f5c001f2e1e5b" },
+      success: (response) => {
+        console.log("response", response);
+      },
+      error: (error) => {
+        console.log("error", error);
+      },
+    });
+  }, []);
+
   return (
     <div className="learningContent">
       <div className="learningContent__wrapper">
