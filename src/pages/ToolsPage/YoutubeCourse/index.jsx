@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import youtubeApi from "../../../apis/youtube.api";
 
 const YouTubeCourse = () => {
+  const [youtubePlayListUrl, setYoutubePlayListUrl] = useState("");
   const arr = [1, 2, 3];
+
+  function convertYoutubeToCourse() {
+    youtubeApi.handleCreatePlaylist({
+      payload: { youtubePlayListUrl },
+      success: (res) => {
+        console.log("Youtube Course", res);
+      },
+      error: (err) => {
+        console.log("Youtube Course Error", err);
+      },
+    });
+  }
+
   return (
     <div className="d-flex flex-column justify-content-around align-items-center">
       <section
@@ -25,6 +40,8 @@ const YouTubeCourse = () => {
               backgroundColor: "rgba(243, 243, 243, 1)",
               border: "none",
             }}
+            value={youtubePlayListUrl}
+            onChange={(e) => setYoutubePlayListUrl(e.target.value)}
           />
           <div className="p-3">
             <button
@@ -33,6 +50,7 @@ const YouTubeCourse = () => {
                 backgroundColor: "rgba(235, 124, 73, 1) rgba(240, 79, 82, 1)",
                 color: "white",
               }}
+              onClick={convertYoutubeToCourse}
             >
               Convert <i class="bi bi-arrow-right-short"></i>
             </button>

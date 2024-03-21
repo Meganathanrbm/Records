@@ -1,12 +1,25 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+
 import walktrough from "../../../assets/svg/walktrough.svg";
 import sectionsAndSkills from "../../../constants/skills.constant";
 
+import userApi from "../../../apis/user.api";
+
+import currentUserState from "../../../store/user.store";
+import skillApi from "../../../apis/skill.api";
+
 const Walktrough = () => {
+  const navigate = useNavigate();
   const [showMore, setShowMore] = useState({});
   const [selectedSkills, setSelectedSkills] = useState([]);
+  const [currentLoggedInUser, setCurrentLoggedInUser] =
+    useRecoilState(currentUserState);
   const sections = sectionsAndSkills;
+  const skills = selectedSkills.map((skill) => skill.name);
+  const [searchParams, setSearchParams] = useSearchParams({ q: "" });
+  const q = searchParams.get("q");
 
   const toggleShowMore = (sectionTitle) => {
     setShowMore((prevState) => ({
@@ -26,6 +39,35 @@ const Walktrough = () => {
     } else {
       alert("You can only select 5 skills");
     }
+  }
+
+  useEffect(() => {
+    skillApi.getSkills({
+      query: q,
+      success: (res) => {
+        console.log("Skills", res);
+      },
+      error: (err) => {
+        console.log("Skills Error", err);
+      },
+    });
+  }, [q]);
+
+  function handleOnboarding() {
+    userApi.handleOnboarding({
+      payload: skills,
+      success: (res) => {
+        console.log("Onboarding Success", res);
+        setCurrentLoggedInUser({
+          ...currentLoggedInUser,
+          isOnBoardingCompleted: true,
+        });
+        navigate("/dashboard");
+      },
+      error: (err) => {
+        console.log("Onboarding Error", err);
+      },
+    });
   }
 
   return (
@@ -66,11 +108,20 @@ const Walktrough = () => {
                 <i class="bi bi-search"></i>
               </span>
               <input
-                type="text"
+                type="search"
                 className="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-sm"
                 placeholder="Search for skills"
+                value={q}
+                onChange={(e) => {
+                  setSearchParams((prev) => {
+                    return {
+                      ...prev,
+                      q: e.target.value,
+                    };
+                  });
+                }}
               />
             </div>
             <p className="d-flex gap-2 align-items-center">
@@ -165,11 +216,15 @@ const Walktrough = () => {
           })}
           {/*  */}
         </div>
+
+        {/* <Link to={"/dashboard"}>  */}
         <section className="w-100 d-flex justify-content-end p-3">
-          <Link to={"/dashboard"}>
-            <button className="btn btn-primary">Get Started</button>
-          </Link>
+          <button className="btn btn-primary" onClick={handleOnboarding}>
+            Get Started
+          </button>
         </section>
+        {/* </Link> */}
+
       </div>
     </div>
   );

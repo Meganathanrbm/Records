@@ -19,6 +19,7 @@ import { Suspense } from "react";
 import nonAuthRoutes from "./router/non-auth-routes";
 import SuspenseLayout from "./layouts/SuspenseLayout";
 import LearningContent from "./pages/LearningContent/LearningContent";
+import ProtectedRouter from "./middleware/ProtectedRouter";
 
 function App() {
   const router = createBrowserRouter([
@@ -39,7 +40,7 @@ function App() {
           element: <Tools />,
         },
         {
-          path: "/profile",
+          path: "/profile/:userId",
           element: <Profile />,
         },
       ],
@@ -67,15 +68,19 @@ function App() {
             <Route path="/" element={<Signin />} />
 
             {/* Routes for authenticated users */}
-            <Route element={<NavigationLayout />}>
-              {/* Authenticated routes */}
-              {navigationRoutes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={route.component}
-                />
-              ))}
+
+            <Route element={<ProtectedRouter />}>
+              <Route element={<NavigationLayout />}>
+                {/* Authenticated routes */}
+                {navigationRoutes.map((route, index) => (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={route.component}
+                  />
+                ))}
+              </Route>
+
             </Route>
 
             {/* Routes for non-authenticated users */}

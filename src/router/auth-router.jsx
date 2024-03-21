@@ -24,14 +24,14 @@ const navigationRoutes = [
   },
   {
     name: "Profile",
-    path: "/profile",
+    path: "/profile/:userId",
     component: <Profile />,
   },
   {
     name: "LearningContent",
-    path:"/learning-content",
-    component: <LearningContent />
-  }
+    path: "/learning-content",
+    component: <LearningContent />,
+  },
 ];
 
 export default navigationRoutes;
