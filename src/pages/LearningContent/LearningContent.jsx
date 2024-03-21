@@ -1,6 +1,11 @@
 import React from "react";
 import "./learningContent.css";
-import { IoIosArrowBack, IoIosArrowDown, IoMdAdd } from "react-icons/io";
+import {
+  IoIosArrowBack,
+  IoIosArrowForward,
+  IoIosArrowDown,
+  IoMdAdd,
+} from "react-icons/io";
 import { FaPlay } from "react-icons/fa";
 import LearningContentCard from "../../components/learningContentCard/LearningContentCard";
 import LearningContentSection from "../../components/learningContentSection2/LearningContentSection";
@@ -13,7 +18,7 @@ const LearningContent = () => {
           <div className="learningContent__container1">
             <div className="learningContent__title">
               <p>
-                My Learnings <IoIosArrowBack /> Web Developmet Masterclas
+                My Learnings <IoIosArrowForward /> Web Developmet Masterclas
               </p>
               <p className="learningContent__udemy">
                 Enrolled on <span>Udemy</span>
@@ -38,7 +43,7 @@ const LearningContent = () => {
             <div className="learningContent__inputs">
               <div className="learningContent__input_wrapper">
                 <input type="text" placeholder="Add new note at 3:12" />
-                <IoMdAdd />
+                <IoMdAdd style={{ cursor: "pointer" }} />
               </div>
 
               <div className="learningContent__time">

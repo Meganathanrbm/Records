@@ -46,7 +46,7 @@ const Learning = () => {
               value="7"
               min="0"
               max="100"
-              style={{ visibility: "hidden", height: 0, width: 0 }}
+              style={{ visibility: "hidden", height: 0, width:0 }}
             >
               71%
             </progress>

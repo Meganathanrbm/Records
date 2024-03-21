@@ -110,7 +110,7 @@
 
 .dashboard__seciton2 {
   margin-left: 20px;
-  width: 16vw;
+  width: 20vw;
 }
 
 .dashboard__seciton2 h4 {
@@ -216,9 +216,11 @@
   margin-top: 20px;
   border-radius: 10px;
 }
+
 .dashboard__section2_text {
   margin-left: 20px;
 }
+
 .dashboard__section2_text h4 {
   font-weight: normal;
 }

@@ -10,10 +10,13 @@ import sigin from "../../assets/svg/sigin.svg";
 import logo from "../../assets/svg/logo.svg";
 import logo2 from "../../assets/svg/forgotpassword.svg";
 import styles from "./register.module.css";
+import { FaRegEyeSlash } from "react-icons/fa";
+import ForgetPassword from "./ForgetPassword";
 
 const Signin = () => {
   const navigate = useNavigate();
   const [forgetPassword, setForgetPassword] = useState(false);
+
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [isUserNotAuthenticated, setIsUserNotAuthenticated] = useState(false);
   const [currentLoggedInUser, setCurrentLoggedInUser] =
@@ -62,6 +65,9 @@ const Signin = () => {
   // if (isUserNotAuthenticated) {
   //   return <h1>Please Login</h1>;
   // }
+
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div
@@ -117,6 +123,7 @@ const Signin = () => {
                   }
                 />
               </div>
+
               <div className="mb-3">
                 <input
                   type="password"
@@ -139,6 +146,40 @@ const Signin = () => {
                 Sign In
               </button>
               {/* </Link> */}
+
+//               <div className="mb-3  input-group   ">
+//                 <div
+//                   style={{ padding: " 0px" }}
+//                   className="form-control d-flex  justify-content-center  align-items-center "
+//                 >
+//                   <input
+//                     type={showPassword ? "text" : "password"}
+//                     className=""
+//                     style={{ width: "160px" }}
+//                     id="formGroupExampleInput2"
+//                     placeholder="Password"
+//                   />
+
+//                   <button
+//                     onClick={() => setShowPassword((prev) => !prev)}
+//                     class="btn "
+//                     type="button"
+//                   >
+//                     <FaRegEyeSlash />
+//                   </button>
+//                 </div>
+//               </div>
+//               <Link to={"/onboarding"}>
+//                 {" "}
+//                 <button
+//                   style={{ width: "100%" }}
+//                   type="button"
+//                   className="btn btn-primary"
+//                 >
+//                   Sign In
+//                 </button>
+//               </Link>
+
             </section>
 
             <div className="d-flex justify-content-between gap-5 ">
@@ -173,6 +214,7 @@ const Signin = () => {
     </div>
   );
 };
+
 
 function ForgetPassword() {
   const [nextPage, setNextPage] = useState(true);
@@ -250,13 +292,74 @@ function ForgetPassword() {
           )}
         </section>
 
-        <section className="d-flex justify-content-between w-100">
-          <p>Privacy policy</p>
-          <p>CopyRights 2022</p>
-        </section>
-      </div>
-    </div>
-  );
-}
+// function ForgetPassword() {
+//   const [email, setEmail] = useState(true);
+//   const navigate = useNavigate();
+
+//   return (
+//     <div
+//       className={`container bg-white position-absolute  top-50 start-50 translate-middle d-flex p-2 rounded   border text-black `}
+//       style={{ width: " -webkit-fill-available" }}
+//     >
+//       <div className="d-flex flex-column justify-content-between align-items-start p-4 gap-3 w-100">
+//         <button
+//           className="btn btn-secondary"
+//           onClick={() => navigate("/register")}
+//         >
+//           Go Back
+//         </button>
+//         <section className="d-flex flex-column justify-content-center align-items-center gap-3 mb-5 w-100 ">
+//           <img src={logo2} alt="" />
+//           <h1>Forget Password ?</h1>
+//           {email ? (
+//             <>
+//               <p className={styles.forgotPasswordPara}>
+//                 Don't worry! Resetting your password is simple. Just type in the
+//                 email you registered to Record.
+//               </p>
+//               <section className="d-flex flex-column justify-content-center align-items-strech w-50">
+//                 <div className="mb-3">
+//                   <input
+//                     type="email"
+//                     className="form-control"
+//                     id="formGroupExampleInput"
+//                     placeholder="Email"
+//                   />
+//                 </div>
+//                 <button
+//                   type="button"
+//                   className="btn btn-primary"
+//                   onClick={(e) => setEmail(false)}
+//                 >
+//                   Send
+//                 </button>
+//               </section>
+//               <p>Don’t have an account? Contact Administrator</p>
+//             </>
+//           ) : (
+//             <>
+//               <p>Great, password reset link has been sent to your email.</p>
+//               <section className="d-flex flex-column justify-content-center align-items-strech w-50">
+//                 <button
+//                   type="button"
+//                   className="btn btn-primary"
+//                   onClick={() => navigate("/register")}
+//                 >
+//                   Sign In Now
+//                 </button>
+//               </section>
+//             </>
+//           )}
+//         </section>
+
+
+//         <section className="d-flex justify-content-between w-100">
+//           <p>Privacy policy</p>
+//           <p>CopyRights 2022</p>
+//         </section>
+//       </div>
+//     </div>
+//   );
+// }
 
 export default Signin;

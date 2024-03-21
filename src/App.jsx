@@ -68,6 +68,7 @@ function App() {
             <Route path="/" element={<Signin />} />
 
             {/* Routes for authenticated users */}
+
             <Route element={<ProtectedRouter />}>
               <Route element={<NavigationLayout />}>
                 {/* Authenticated routes */}
@@ -79,6 +80,7 @@ function App() {
                   />
                 ))}
               </Route>
+
             </Route>
 
             {/* Routes for non-authenticated users */}

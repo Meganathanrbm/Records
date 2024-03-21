@@ -23,7 +23,7 @@ const YouTubeCourse = () => {
         className=" d-flex flex-column justify-content-center align-items-center mb-5"
         style={{ width: "50vw" }}
       >
-        <h3 className="fw-semibold mb-4">Convert Youtube Playlist</h3>
+        <h2 className="fw-semibold mb-4">Convert Youtube Playlist</h2>
 
         <div
           className="d-flex gap-3 justify-content-around align-items-center rounded-3 "
@@ -34,7 +34,7 @@ const YouTubeCourse = () => {
         >
           <input
             type="text"
-            className="w-100 p-2"
+            className="w-100 p-2 px-4"
             placeholder="Paste the content/playlist link here"
             style={{
               backgroundColor: "rgba(243, 243, 243, 1)",
@@ -62,7 +62,7 @@ const YouTubeCourse = () => {
         className="mt-5 d-flex flex-column justify-content-center align-items-center "
         style={{ marginTop: "2rem" }}
       >
-        <h4 className="fw-lighter">
+        <h4 style={{ fontWeight: "normal", fontSize: "26px" }} className="">
           How to convert the YouTube playlist to Course?
         </h4>
         <div className="d-flex justify-content-around align-items-center">

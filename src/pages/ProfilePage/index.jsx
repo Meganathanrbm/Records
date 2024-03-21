@@ -40,7 +40,11 @@ const Profile = () => {
     <div className="row">
       <div
         className="col col-4 rounded-4 pt-2"
-        style={{ border: "1px solid #1212124D", minHeight: "80vh" }}
+        style={{
+          border: "1px solid #1212124D",
+          width: "20vw",
+          minHeight: "80vh",
+        }}
       >
         <div className="row d-flex flex-column  align-items-center text-center ">
           <img
@@ -63,10 +67,8 @@ const Profile = () => {
           style={{
             textTransform: "capitalize",
             color: "#8F8F8F",
-            fontWeight: "500",
-            fontSize: "20px",
           }}
-          className="d-flex flex-column gap-4 pt-4 "
+          className="d-flex flex-column gap-3 mt-4 profile_ul "
         >
           <li
             style={{ cursor: "pointer" }}
@@ -119,7 +121,10 @@ const Profile = () => {
           </li>
         </ul>
       </div>
-      <div className="col col-8 px-4">
+
+      <div className="col col-8 px-4 ">
+        <div className="row">{profileType === "basic" && <BasicProfile />}</div>
+
         <div className="row">
           {profileType === "basic" && (
             <BasicProfile userProfile={userProfile} />

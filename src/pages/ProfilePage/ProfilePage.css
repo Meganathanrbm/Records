@@ -1,3 +1,8 @@
 .colored {
   color: #f04f52;
 }
+
+.profile_ul li {
+  font-weight: 500;
+  font-size: 18px;
+}
