@@ -14,6 +14,13 @@ input {
   outline: none;
 }
 
+.custom_btn{
+  color: white;
+  background-color:linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%) ;
+  border: none;
+  max-width: 250px;
+  font-size: 14px;
+}
 
 ::-webkit-scrollbar-track {
   border-radius: 10px;

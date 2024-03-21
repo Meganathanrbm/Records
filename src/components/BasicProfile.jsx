@@ -1,7 +1,12 @@
 import tickWhite from "../assets/svg/tickWhite.svg";
 import plus from "../assets/svg/plus.svg";
 import edit from "../assets/svg/editIcon.svg";
+import linkedIn from "../assets/profile/linkedIn.svg"
+import facebook from "../assets/profile/facebook.svg"
 
+import behance from "../assets/profile/behance.svg"
+import personalWeb from "../assets/profile/personalWeb.svg"
+import twitter from "../assets/profile/twitter.svg"
 import greentick from "../assets/svg/greenTick.svg";
 import instagram from "../assets/svg/instagram.svg";
 import x from "../assets/svg/x.svg";
@@ -9,6 +14,10 @@ import linkedin from "../assets/svg/linkedin.svg";
 
 import { useState } from "react";
 import diamond from "../assets/svg/diamond.svg";
+
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const BasicProfile = ({ userProfile }) => {
   const [editMode, setEditMode] = useState(true);
@@ -22,6 +31,63 @@ const BasicProfile = ({ userProfile }) => {
     // email: "",
     summary: "",
   });
+
+  const [socialLinksVal, setSocialLinksVal] = useState({
+    linkedIn:"",
+    instagram:"",
+    twitter:"",
+    facebook:"",
+    behance:"",
+    personalWebsite:""
+  })
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+const socialLinks = [
+  {
+  title:"LinkedIn",
+  icon:linkedIn,
+  placeholder:"https://www.linkedin.com/in/akshay-s-kumar-/",
+  value:socialLinksVal.linkedIn,
+  onchange:function (e){setSocialLinksVal({...socialLinksVal,linkedIn:e.target.value})}
+},
+{
+  title:"Instagram",
+  icon:instagram,
+  placeholder:"https://www.instagram.com/letitbeakshay/",
+  value:socialLinksVal.instagram,
+  onchange:function (e){setSocialLinksVal({...socialLinksVal,instagram:e.target.value})}
+},
+{
+  title:"Twitter",
+  icon:twitter,
+  placeholder:"",
+  value:socialLinksVal.twitter,
+  onchange:function (e){setSocialLinksVal({...socialLinksVal,twitter:e.target.value})}
+},
+{
+  title:"Facebook",
+  icon:facebook,
+  placeholder:"",
+  value:socialLinksVal.facebook,
+  onchange:function (e){setSocialLinksVal({...socialLinksVal,facebook:e.target.value})}
+},
+{
+  title:"Behance",
+  icon:behance,
+  placeholder:"",
+  value:socialLinksVal.behance,
+  onchange:function (e){setSocialLinksVal({...socialLinksVal,behance:e.target.value})}
+},
+{
+  title:"Personal Website",
+  icon:personalWeb,
+  placeholder:"",
+  value:socialLinksVal.personalWebsite,
+  onchange:function (e){setSocialLinksVal({...socialLinksVal,personalWebsite:e.target.value})}
+},];
 
   return (
     console.log(userProfile),
@@ -435,7 +501,8 @@ const BasicProfile = ({ userProfile }) => {
                 </div>
               </div>
               {editMode && (
-                <button
+                <p
+                onClick={handleShow}
                   className=" d-flex flex-row btn justify-content-center align-items-center gap-2"
                   style={{
                     color: "white",
@@ -450,8 +517,88 @@ const BasicProfile = ({ userProfile }) => {
                 >
                   Add Social Media Profiles{" "}
                   <img src={plus} alt="add" width={15} height={15} />
-                </button>
+                </p>
               )}
+              <div className="">
+                  {/* Modal */}
+      <Modal show={show} onHide={handleClose}  animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add your Social Media Links</Modal.Title>
+        </Modal.Header>
+        <form
+          className="p-3 py-2 d-flex gap-4 flex-column"
+          style={{ color: "#8F8F8F", fontSize: "18px" }}
+        >
+          {
+            socialLinks.map((item, i)=>(
+              <div className="form-row d-flex gap-4 ">
+
+              <div
+                className="form-group col-6"
+                style={{ position: "relative", zIndex: "1", width:"400px  " }}
+              >
+                <label  htmlFor="fullname">
+                  <img alt="linkedin" style={{marginRight:"5px"}} width={22} src={item.icon} />
+                  {item.title}</label>
+                <input
+                  type="text"
+                  className="form-control  "
+                  id="fullname"
+                  style={{
+                    backgroundColor: "#F3F3F3",
+                    color: "#858585",
+                    fontSize: "18px",
+                    marginTop:"10px",
+                    width:"410px",
+                  }}
+                  onClick={() => {
+                    setEditMode(true);
+                  }}
+                  value={item.value}
+                  onChange={(e) => item.onchange(e)}
+                />
+                <span>
+                  {editMode && (
+                    <img
+                      src={edit}
+                      alt="editicon"
+                      style={{
+                        position: "absolute",
+                        top: "55%",
+                        right: "10px",
+                        zIndex: "10",
+                        width: "20px",
+                      }}
+                    />
+                  )}
+                </span>
+              </div>
+            </div>
+            ))
+          }
+       
+</form>
+        <Modal.Footer>
+          <Button
+                onClick={handleClose}
+                  className=" d-flex flex-row btn justify-content-center align-items-center gap-2"
+                  style={{
+                    color: "white",
+
+                    background:
+                      "linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%)",
+                    border: "none",
+
+                    maxWidth: "250px",
+                    fontSize: "14px",
+                  }}
+                >
+                  Save
+                </Button>
+        </Modal.Footer>
+      </Modal>
+
+              </div>
             </div>
             <div className="col-6 d-flex justify-content-end align-items-start">
               {editMode && (

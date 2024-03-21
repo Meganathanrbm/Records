@@ -1,4 +1,3 @@
-signin page / go back / "/register"   -error
 
 fixed
 hide / show password in signin page
