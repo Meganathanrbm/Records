@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo2 from "../../assets/svg/forgotpassword.svg";
 import styles from "./register.module.css";
 
-const ForgetPassword = () => {
+const ForgetPassword = ({ setForgetPassword }) => {
   const [email, setEmail] = useState(true);
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const ForgetPassword = () => {
       <div className="d-flex flex-column justify-content-between align-items-start p-4 gap-3 w-100">
         <button
           className="btn btn-secondary"
-          onClick={() => navigate("/register")}
+          onClick={() => setForgetPassword(false)}
         >
           Go Back
         </button>
@@ -54,7 +54,7 @@ const ForgetPassword = () => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => navigate("/register")}
+                  onClick={() => navigate("/")}
                 >
                   Sign In Now
                 </button>

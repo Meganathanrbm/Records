@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import youtubeApi from "../../../apis/youtube.api";
+import youtbeInstructions from "../../../constants/youtubepage.constant";
 
 const YouTubeCourse = () => {
   const [youtubePlayListUrl, setYoutubePlayListUrl] = useState("");
-  const arr = [1, 2, 3];
 
   function convertYoutubeToCourse() {
     youtubeApi.handleCreatePlaylist({
@@ -65,21 +65,17 @@ const YouTubeCourse = () => {
         <h4 style={{ fontWeight: "normal", fontSize: "26px" }} className="">
           How to convert the YouTube playlist to Course?
         </h4>
-        <div className="d-flex justify-content-around align-items-center">
-          {arr.map((item, index) => {
+        <div className="d-flex justify-content-around align-items-baseline">
+          {youtbeInstructions.map((item, index) => {
             return (
-              <div className="d-flex flex-column justify-content-center align-items-center p-4 gap-3">
-                <h5>2. Convert it on Record</h5>
+              <div className="d-flex flex-column justify-content-center align-items-center p-4 gap-3 w-25">
+                <h5>{item.title}</h5>
                 <img
                   src="/youtubecourse.png"
                   alt=""
                   style={{ width: "15vw" }}
                 />
-                <p className="text-center">
-                  Paste the link in the above text field and press the convert
-                  option to convert your content or playlist from YouTube to
-                  course.
-                </p>
+                <p className="text-center">{item.description}</p>
               </div>
             );
           })}

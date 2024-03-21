@@ -1,9 +1,10 @@
 import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 const SuspenseLayout = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <Outlet />
     </Suspense>
   );

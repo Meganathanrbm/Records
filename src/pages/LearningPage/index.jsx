@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./learning.css";
 import { FaCheck } from "react-icons/fa6";
 import LearningCard from "../../components/learningCard/LearningCard";
@@ -7,8 +7,26 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 import Ulogo from "../../assets/u-logo.png";
 import Ylogo from "../../assets/y-logo.png";
 import Clogo from "../../assets/c-logo.png";
+import youtubeApi from "../../apis/youtube.api";
+import { useRecoilState } from "recoil";
+import currentUserState from "../../store/user.store";
 
 const Learning = () => {
+  const [currentLoggedInUser, setCurrentLoggedInUser] =
+    useRecoilState(currentUserState);
+
+  useEffect(() => {
+    youtubeApi.handlegetAllCourses({
+      payload: { userId: currentLoggedInUser.userId },
+      success: (response) => {
+        console.log("response", response);
+      },
+      error: (error) => {
+        console.log("error", error);
+      },
+    });
+  }, []);
+
   return (
     <div className="learning__wrapper">
       <div className="learning__section">
@@ -46,7 +64,7 @@ const Learning = () => {
               value="7"
               min="0"
               max="100"
-              style={{ visibility: "hidden", height: 0, width:0 }}
+              style={{ visibility: "hidden", height: 0, width: 0 }}
             >
               71%
             </progress>

@@ -10,6 +10,7 @@ import currentUserState from "../../store/user.store";
 
 // Importing apis
 import authApi from "../../apis/auth.api";
+import Loader from "../../components/Loader";
 
 export default function ProtectedRouter() {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ export default function ProtectedRouter() {
           <Navigate to="/" />
         )
       ) : (
-        <h1>Loading</h1>
+        <Loader />
       )}
     </>
   );
