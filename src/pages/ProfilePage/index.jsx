@@ -37,13 +37,13 @@ const Profile = () => {
   }
 
   return (
-    <div className="row">
+    <div className="row d-flex justify-content-around">
       <div
-        className="col col-4 rounded-4 pt-2"
+        className="col col-4 rounded-4 pt-2 border"
         style={{
-          border: "1px solid #1212124D",
+          // border: "1px solid #1212124D",
           width: "20vw",
-          minHeight: "80vh",
+          height: "85vh",
         }}
       >
         <div className="row d-flex flex-column  align-items-center text-center ">
@@ -60,7 +60,7 @@ const Profile = () => {
               color: "#12131A",
             }}
           >
-            Akshay Kumar
+            {userProfile?.name}
           </h4>
         </div>
         <ul
@@ -123,8 +123,11 @@ const Profile = () => {
       </div>
 
       <div className="col col-8 px-4 ">
+<<<<<<< HEAD
         {/* <div className="row">{profileType === "basic" && <BasicProfile />}</div> */}
 
+=======
+>>>>>>> 658e819d30fa30faeddc06f8dd959ba8d2d94c24
         <div className="row">
           {profileType === "basic" && (
             <BasicProfile userProfile={userProfile} />

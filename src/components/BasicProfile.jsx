@@ -94,17 +94,19 @@ const socialLinks = [
     (
       <div>
         <div className="row " style={{ paddingInlineEnd: "0" }}>
-          <h3 className="col">Basic Details</h3>
+          <h3 className="col" style={{ fontSize: "18px", fontWeight: "700" }}>
+            Basic Details
+          </h3>
           <button
             type="button"
-            className="col btn d-flex justify-content-center align-items-center gap-2  "
+            className="col btn d-flex justify-content-around align-items-center gap-1  "
             style={{
-              color: "white",
-              background:
+              backgroundColor:
                 "linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%)",
+              color: "white",
               border: "none",
-              padding: "0px",
-              maxWidth: "250px",
+              padding: "revert-layer",
+              maxWidth: "215px",
             }}
           >
             DigiLocker Connected
@@ -116,7 +118,7 @@ const socialLinks = [
         </div>
         <form
           className="pt-4 d-flex gap-4 flex-column"
-          style={{ color: "#8F8F8F", fontSize: "18px" }}
+          style={{ color: "#8F8F8F", fontSize: "16px" }}
         >
           <div className="form-row d-flex gap-4 ">
             {/* fullname */}

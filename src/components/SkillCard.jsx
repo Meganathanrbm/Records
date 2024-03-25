@@ -3,8 +3,8 @@ import verified from "../assets/svg/greenTick.svg";
 const SkillCard = ({ text }) => {
   return (
     <div
-      className="d-flex  py-1 px-3 rounded-4 align-items-center gap-2 "
-      style={{ border: "solid 1px #1212124D ", width: "max-content" }}
+      className="d-flex  py-1 px-3 rounded-4 align-items-center gap-2 border"
+      // style={{ border: "solid 1px #1212124D ", width: "max-content" }}
     >
       <div>
         <img src={skillLogo} alt="skillLogo" style={{ height: "50px" }} />

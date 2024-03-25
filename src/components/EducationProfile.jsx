@@ -59,7 +59,9 @@ const EducationProfile = () => {
     <div>
       {" "}
       <div className="row " style={{ paddingInlineEnd: "0" }}>
-        <h3 className="col">Educational Details</h3>
+        <h3 className="col" style={{ fontSize: "18px", fontWeight: "700" }}>
+          Educational Details
+        </h3>
         <button
          onClick={handleShow1}
           type="button"
@@ -69,8 +71,8 @@ const EducationProfile = () => {
             background:
               "linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%)",
             border: "none",
-            padding: "0px",
-            maxWidth: "250px",
+            padding: "revert-layer",
+            maxWidth: "200px",
           }}
         >
           Add Education
