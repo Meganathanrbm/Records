@@ -28,7 +28,9 @@ const LicenseProfile = () => {
     <div>
       {" "}
       <div className="row " style={{ paddingInlineEnd: "0" }}>
-        <h3 className="col">Licenses and Certifications</h3>
+        <h3 className="col" style={{ fontSize: "18px", fontWeight: "700" }}>
+          Licenses and Certifications
+        </h3>
         <button
           type="button"
           className="col btn d-flex justify-content-center align-items-center gap-2  "
@@ -37,8 +39,8 @@ const LicenseProfile = () => {
             background:
               "linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%)",
             border: "none",
-            padding: "0px",
-            maxWidth: "250px",
+            padding: "revert-layer",
+            maxWidth: "200px",
           }}
         >
           Add Credentials

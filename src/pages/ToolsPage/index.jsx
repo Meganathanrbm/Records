@@ -7,7 +7,9 @@ const Tools = () => {
 
   return (
     <div className="" style={{ overflow: "auto" }}>
-      <h3 className="mb-3">My Tools</h3>
+      <h3 className="mb-4" style={{ fontSize: "18px", fontWeight: "700" }}>
+        My Tools
+      </h3>
       {buttonClicked ? (
         <YouTubeCourse />
       ) : (
@@ -33,7 +35,7 @@ function ToolsCards({ setButtonClicked }) {
                 alt="..."
                 style={{ width: "2vw" }}
               />
-              <h5>{item.title}</h5>
+              <h5 style={{ fontWeight: "700" }}>{item.title}</h5>
             </div>
 
             <p className="text-center">{item.description}</p>

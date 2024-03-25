@@ -15,8 +15,8 @@ const ProfileCard = ({
 }) => {
   return (
     <div
-      className="my-4 row gx-2 rounded-4 p-4"
-      style={{ border: "1px solid #1212124D", position: "relative" }}
+      className="my-4 row gx-2 rounded-4 p-4 border "
+      style={{ position: "relative" }}
     >
       <div className="col-1">
         <img src={image} alt="institute logo" width={50} />
@@ -31,16 +31,16 @@ const ProfileCard = ({
             top: 10,
             cursor: "pointer",
           }}
-          width={25}
-          height={25}
+          width={17}
+          height={17}
         />
         <div className="d-flex flex-row  align-items-center gap-1">
-          <h4>{name} </h4>
+          <h4 style={{ fontSize: "18px", fontWeight: "700" }}>{name} </h4>
           {verified && (
             <img src={greentick} alt="tick" width={20} height={20} />
           )}
         </div>
-        <h5 style={{ color: "#444444", fontWeight: 400, fontSize: "18px" }}>
+        <h5 style={{ color: "#444444", fontWeight: 400, fontSize: "16px" }}>
           {field}
         </h5>
         <p style={{ color: "#858585" }}>
@@ -48,7 +48,7 @@ const ProfileCard = ({
           {duration ? "| " : null}
           {duration}
         </p>
-        <div className="d-flex gap-2 mb-2">
+        <div className="d-flex gap-2 mb-1">
           {skills &&
             skills.map((skill, index) => {
               return (
@@ -69,7 +69,7 @@ const ProfileCard = ({
               );
             })}
         </div>
-        <p style={{ fontWeight: 500 }}>{description}</p>
+        <p style={{ fontWeight: 400, fontSize: "15px" }}>{description}</p>
       </div>
       <div className="d-flex justify-content-end">
         {button && (

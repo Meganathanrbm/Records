@@ -39,9 +39,9 @@ const Profile = () => {
   return (
     <div className="row d-flex justify-content-around">
       <div
-        className="col col-4 rounded-4 pt-2"
+        className="col col-4 rounded-4 pt-2 border"
         style={{
-          border: "1px solid #1212124D",
+          // border: "1px solid #1212124D",
           width: "20vw",
           height: "85vh",
         }}
