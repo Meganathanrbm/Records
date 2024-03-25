@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
+import { useRecoilState } from "recoil";
+
+import currentUserState from "../../store/user.store";
+
 import "./dashboard.css";
+
 import { IoMdArrowForward, IoIosArrowForward } from "react-icons/io";
 import { FaMedal } from "react-icons/fa";
 import { FaArrowTrendUp } from "react-icons/fa6";
@@ -15,12 +20,14 @@ import udemy from "../../assets/Udemy.png";
 import calender from "../../assets/calender.png";
 
 const DashBoard = () => {
+  const [currentLoggedInUser, setCurrentLoggedInUser] =
+    useRecoilState(currentUserState);
   return (
     <div className="dashboard__wrapper">
       <div className="dashboard__section1">
         <div className="dashboard__container1">
           <div className="dashboard__header">
-            <h1>Welcome back, Name!</h1>
+            <h1>Welcome back, {currentLoggedInUser.name}</h1>
             <p>You can now your YouTube Playlists into Courses</p>
             <button>
               Explore Now <IoMdArrowForward />

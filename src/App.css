@@ -1,4 +1,6 @@
-
+body {
+  font-family: "DM Sans", sans-serif;
+}
 
 a {
   text-decoration: none;
@@ -13,7 +15,6 @@ input {
   border: none;
   outline: none;
 }
-
 
 ::-webkit-scrollbar-track {
   border-radius: 10px;

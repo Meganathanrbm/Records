@@ -103,7 +103,7 @@ const NavigationLayout = () => {
               Explore More Fetures
             </Link>
           </section>
-          <ul className="d-flex flex-column gap-3">
+          <ul className="d-flex flex-column gap-3 mt-2">
             <li className="d-flex gap-3">
               <img src={help} alt="help" srcset="" />
               <a href="/register">Help</a>

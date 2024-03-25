@@ -87,7 +87,10 @@ const Signin = () => {
       ) : (
         <div
           className={`container bg-white position-absolute  top-50 start-50 translate-middle d-flex p-2 rounded min-vh-80 border `}
-          style={{ width: "900px" }}
+          style={{
+            width: "900px",
+            boxShadow: "0px 0px 10px 0px rgba(0,0,0,.5)",
+          }}
         >
           <div className="container bg-primary w-50 d-flex flex-column justify-content-start align-items-start  p-5 gap-4 rounded">
             <img src={logo} alt="" srcset="" />
@@ -109,7 +112,10 @@ const Signin = () => {
               <p>Let’s open your skill repository.</p>
             </section>
 
-            <section className="d-flex flex-column justify-content-center align-items-stretch w-50">
+            <section
+              className="d-flex flex-column justify-content-center align-items-stretch "
+              style={{ width: "75%" }}
+            >
               <div className="mb-3">
                 <input
                   type="email"
@@ -126,7 +132,7 @@ const Signin = () => {
               <div className="mb-3  input-group   ">
                 <div
                   style={{ padding: " 0px" }}
-                  className="form-control d-flex  justify-content-center  align-items-center "
+                  className="form-control d-flex  justify-content-between  align-items-center "
                 >
                   <input
                     type={showPassword ? "text" : "password"}
