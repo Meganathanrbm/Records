@@ -15,7 +15,11 @@
     "chart.js": "^4.4.2",
     "react": "^18.2.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-bootstrap": "^2.10.2",
+=======
+    "react-chartjs-2": "^5.2.0",
+>>>>>>> 658e819d30fa30faeddc06f8dd959ba8d2d94c24
 =======
     "react-chartjs-2": "^5.2.0",
 >>>>>>> 658e819d30fa30faeddc06f8dd959ba8d2d94c24
