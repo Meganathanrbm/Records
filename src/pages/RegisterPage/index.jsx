@@ -131,7 +131,7 @@ const Signin = () => {
               {/* </Link> */}
               <div className="mb-3  input-group   ">
                 <div
-                  style={{ padding: " 0px" }}
+                  style={{ padding: "0 0.5rem" }}
                   className="form-control d-flex  justify-content-between  align-items-center "
                 >
                   <input
