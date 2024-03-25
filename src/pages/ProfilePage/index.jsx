@@ -60,7 +60,7 @@ const Profile = () => {
               color: "#12131A",
             }}
           >
-            Akshay Kumar
+            {userProfile?.name}
           </h4>
         </div>
         <ul

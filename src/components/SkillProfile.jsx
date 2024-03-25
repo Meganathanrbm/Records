@@ -1,6 +1,7 @@
 import SkillCard from "./SkillCard";
 import badge from "../assets/svg/skillBadge.svg";
 import report from "../assets/svg/skillReport.svg";
+import RadarChart from "../pages/ProfilePage/radarChart";
 const SkillProfile = () => {
   return (
     <div className="row">
@@ -110,10 +111,11 @@ const SkillProfile = () => {
         </div>
 
         <div
-          className="rounded-4 p-2 border mt-3"
-          // style={{ border: "solid 2px #1212124D " }}
+          className="rounded-4 p-2 border mt-2"
+          style={{ minHeight: "50vh" }}
         >
-          <img src={report} alt="report" style={{ width: "100%" }} />
+          {/* <img src={report} alt="report" style={{ width: "100%" }} /> */}
+          <RadarChart />
         </div>
       </div>
     </div>
