@@ -123,11 +123,9 @@ const Profile = () => {
       </div>
 
       <div className="col col-8 px-4 ">
-<<<<<<< HEAD
         {/* <div className="row">{profileType === "basic" && <BasicProfile />}</div> */}
 
-=======
->>>>>>> 658e819d30fa30faeddc06f8dd959ba8d2d94c24
+
         <div className="row">
           {profileType === "basic" && (
             <BasicProfile userProfile={userProfile} />
