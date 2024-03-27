@@ -8,3 +8,63 @@ li {
   font-size: 18px;
   font-weight: 500;
 }
+
+.notification {
+  display: flex;
+  min-height: 40vh;
+  flex-direction: column;
+}
+
+.notification:last-child {
+  margin-bottom: 15px;
+}
+
+.notification_a {
+  margin-top: auto;
+  text-decoration: underline;
+  color: #6D6D6D;
+}
+
+.notification_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid gray;
+}
+
+.li:hover {
+  background-color: rgba(43, 102, 246, 0.08);
+}
+
+.li {
+  margin: 0;
+}
+
+
+
+.notification_logo {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #BCBCBC;
+}
+
+.notification_content {
+  padding: 15px 0;
+  width: auto;
+  text-wrap: nowrap;
+}
+
+.notification_title_para {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+.notification_light_para {
+  margin-top: 0;
+  color: #9A9A9A;
+  font-size: 14px;
+  margin-bottom: 0px;
+}

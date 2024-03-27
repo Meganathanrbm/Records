@@ -80,7 +80,6 @@ function App() {
                   />
                 ))}
               </Route>
-
             </Route>
 
             {/* Routes for non-authenticated users */}
