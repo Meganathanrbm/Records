@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./learning.css";
 import { FaCheck } from "react-icons/fa6";
 import LearningCard from "../../components/learningCard/LearningCard";
@@ -11,9 +11,16 @@ import youtubeApi from "../../apis/youtube.api";
 import { useRecoilState } from "recoil";
 import currentUserState from "../../store/user.store";
 
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 const Learning = () => {
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     youtubeApi.handlegetAllCourses({
@@ -52,11 +59,97 @@ const Learning = () => {
               maxWidth: "250px",
               fontSize: "14px",
             }}
+            onClick={handleShow}
           >
             Add New Learnings +
           </button>
         </div>
+        {/* modal */}
+        <Modal show={show} onHide={handleClose} size="lg" animation={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Set Learning Goal</Modal.Title>
+          </Modal.Header>
+          <div
+            className="container"
+            style={{ textAlign: "center", padding: "55px 25px" }}
+          >
+            <h4 className="my-4">Set Hourly Goal</h4>
+            <div>
+              <input
+                style={{
+                  width: "60px",
+                  borderBottom: "2px solid #D1D5DB",
+                  fontSize: "22px",
+                  color: "#EB7C49",
+                  fontWeight: "500",
+                }}
+                type="number"
+                width="5px"
+                placeholder="30"
+              />{" "}
+              <span style={{ color: "rgba(126, 126, 126, 1)" }}>hours /</span>
+              <select
+                name="date"
+                id=""
+                style={{
+                  backgroundColor: "#F3F3F3",
+                  border: "1px solid #D1D5DB",
+                  color: "black",
+                  fontSize: "1rem",
+                  borderRadius: "0.375rem",
+                  outline: "2px solid transparent",
+                  outlineOffset: "2px",
+                  padding: "0.625rem",
+                  paddingRight: "0.75rem",
+                  fontWeight: "500",
+                  margin: "0 15px",
+                }}
+              >
+                <option value="Month">Week</option>
+                <option value="Month">Month</option>
+                <option value="Month">Year</option>
+              </select>
+            </div>
 
+            <p
+              style={{
+                color: "rgba(126, 126, 126, 1)",
+                fontSize: "18px",
+                margin: "20px 15px",
+              }}
+            >
+              The Verifier’s Email ID should be valid & It can be your <br />
+              Tutor, principal or any management
+            </p>
+            <div
+              className=""
+              style={{
+                width: "100%",
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                className=" d-flex flex-row btn justify-content-center align-items-center gap-2"
+                style={{
+                  color: "white",
+
+                  background:
+                    "linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%)",
+                  border: "none",
+
+                  maxWidth: "250px",
+                  fontSize: "14px",
+                  margin: "15px 15px 30px",
+                }}
+              >
+                Update Learning Goal
+              </Button>
+            </div>
+          </div>
+        </Modal>
         <div className="learing__section2_learningGoal">
           <div class="progress-bar">
             <p>41%</p>

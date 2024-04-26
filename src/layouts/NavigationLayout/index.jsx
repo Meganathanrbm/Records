@@ -15,7 +15,25 @@ import { useRecoilState } from "recoil";
 import currentUserState from "../../store/user.store";
 
 const NavigationLayout = () => {
-  const notification = false;
+  const notification = true;
+  const notificationLi = [
+    {
+      title: " PSG Collage of Technology has sent for Review",
+      desc: "6h ago | Education",
+    },
+    {
+      title: " PSG Collage of Technology has sent for Review",
+      desc: "6h ago | Education",
+    },
+    {
+      title: " PSG Collage of Technology has sent for Review",
+      desc: "6h ago | Education",
+    },
+    {
+      title: " PSG Collage of Technology has sent for Review",
+      desc: "6h ago | Education",
+    },
+  ];
   const dropdown = [
     { name: "Add New Learning" },
     {
@@ -174,15 +192,30 @@ const NavigationLayout = () => {
                   minWidth: "15vw",
                 }}
               >
-                <div className="p-2">
-                  <h6>Notifications</h6>
+                <div className="p-3 pb-2">
+                  <h4>Notifications</h4>
                 </div>
                 {notification ? (
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Action
+                  <div className={` notification ${styles.notification}`}>
+                    {notificationLi.map((li, i) => (
+                      <li key={i} className={`${styles.li} px-3`}>
+                        <a className={styles.notification_container} href="#">
+                          <div className={styles.notification_logo}></div>
+                          <div className={styles.notification_content}>
+                            <p className={styles.notification_title_para}>
+                              {li.title}
+                            </p>
+                            <p className={styles.notification_light_para}>
+                              {li.desc}
+                            </p>
+                          </div>
+                        </a>
+                      </li>
+                    ))}
+                    <a className={`p-3 pt-4 ${styles.notification_a}`} href="#">
+                      Mark all as read
                     </a>
-                  </li>
+                  </div>
                 ) : (
                   <div className="d-flex flex-column justify-content-center align-items-center p-2">
                     <img src={notificationIcon} alt="" srcset="" />
