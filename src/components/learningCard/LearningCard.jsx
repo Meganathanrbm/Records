@@ -4,7 +4,7 @@ import thumbnail from "../../assets/thumbnail.webp";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-const LearningCard = ({val}) => {
+const LearningCard = ({ val }) => {
   return (
     <div className="learningCard">
       <div className="learningCard__wrapper">
@@ -29,9 +29,11 @@ const LearningCard = ({val}) => {
             <p>
               Enrolled On <span>Udemy</span>
             </p>
-            <button>
-              Continue Learning <FiArrowUpRight />
-            </button>
+            <Link to={"/learning-content"}>
+              <button>
+                Continue Learning <FiArrowUpRight />
+              </button>
+            </Link>
           </div>
         </div>
       </div>

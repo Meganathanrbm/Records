@@ -77,7 +77,7 @@ const DashBoard = () => {
               <p>
                 Choose from your Favourite <br /> Course Provider
               </p>
-              <div class="dashbord__container3__dropdownMenu">
+              <div className="dashbord__container3__dropdownMenu">
                 <select name="" id="cars">
                   <option value="">Select</option>
                   <option value="">#</option>
@@ -114,7 +114,7 @@ const DashBoard = () => {
 
           <div className="dashboard__section2_learningGoal">
             <div>
-              <div class="progress-bar">
+              <div className="progress-bar">
                 <p className="dashboare__section2_val">41%</p>
                 <progress
                   value="41%"

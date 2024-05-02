@@ -16,22 +16,20 @@ input {
   outline: none;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-.custom_btn{
+<<<<<<< HEAD <<<<<<< HEAD .custom_btn {
   color: white;
-  background-color:linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%) ;
+  background-color: linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%);
   border: none;
   max-width: 250px;
   font-size: 14px;
 }
 
-=======
->>>>>>> 658e819d30fa30faeddc06f8dd959ba8d2d94c24
-=======
->>>>>>> 658e819d30fa30faeddc06f8dd959ba8d2d94c24
-::-webkit-scrollbar-track {
+.background-gradient {
+  
+  background: linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%);
+}
+
+=======>>>>>>>658e819d30fa30faeddc06f8dd959ba8d2d94c24=======>>>>>>>658e819d30fa30faeddc06f8dd959ba8d2d94c24::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #f5f5f5;
 }

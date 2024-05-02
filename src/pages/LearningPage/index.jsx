@@ -151,7 +151,7 @@ const Learning = () => {
           </div>
         </Modal>
         <div className="learing__section2_learningGoal">
-          <div class="progress-bar">
+          <div className="progress-bar">
             <p>41%</p>
             <progress
               value="7"

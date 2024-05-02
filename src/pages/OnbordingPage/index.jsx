@@ -10,7 +10,7 @@ const Onboarding = () => {
           Go Back
         </button> */}
         <p className="d-flex gap-2 align-items-center pl-2">
-          Support <i class="bi bi-info-circle"></i>{" "}
+          Support <i className="bi bi-info-circle"></i>{" "}
         </p>
       </section>
       <section className="d-flex flex-column justify-content-around align-items-center gap-2">
@@ -19,7 +19,7 @@ const Onboarding = () => {
           You can manage and showcase all your courses from anywhere and
           everywhere in a single workspace.
         </p>
-        <img src={onboarding} alt="" srcset="" />
+        <img src={onboarding} alt="" />
       </section>
       <section className="w-100 d-flex justify-content-end">
         <Link to="/walktrough">

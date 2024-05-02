@@ -93,7 +93,7 @@ const Signin = () => {
           }}
         >
           <div className="container bg-primary w-50 d-flex flex-column justify-content-start align-items-start  p-5 gap-4 rounded">
-            <img src={logo} alt="" srcset="" />
+            <img src={logo} alt="" />
             <div>
               <h1>Welcome Back</h1>
               <p>
@@ -102,7 +102,7 @@ const Signin = () => {
               </p>
             </div>
             <section className="w-100 d-flex flex-column justify-content-center align-items-center mb-2">
-              <img src={sigin} alt="logo" srcset="" className="w-50 mb-5" />
+              <img src={sigin} alt="logo" className="w-50 mb-5" />
             </section>
           </div>
 
@@ -148,7 +148,7 @@ const Signin = () => {
 
                   <button
                     onClick={() => setShowPassword((prev) => !prev)}
-                    class="btn "
+                    className="btn "
                     type="button"
                   >
                     <FaRegEyeSlash />
@@ -176,13 +176,13 @@ const Signin = () => {
                   id="flexCheckChecked"
                   checked
                 />
-                <label className="form-check-label" for="flexCheckChecked">
+                <label className="form-check-label" htmlFor="flexCheckChecked">
                   Keep me signed in
                 </label>
               </div>
               <label
                 className="form-check-label"
-                for="flexCheckChecked"
+                htmlFor="flexCheckChecked"
                 onClick={(e) => setForgetPassword(true)}
               >
                 Forgot Password ?

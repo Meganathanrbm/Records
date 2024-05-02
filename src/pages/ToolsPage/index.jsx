@@ -42,9 +42,9 @@ function ToolsCards({ setButtonClicked }) {
             {item.btn && (
               <button
                 onClick={() => setButtonClicked(true)}
-                className="btn d-flex gap-2"
+                className="btn d-flex gap-2 background-gradient"
                 style={{
-                  backgroundColor: "rgba(235, 124, 73, 1) rgba(240, 79, 82, 1)",
+                 
                   color: "white",
                 }}
               >

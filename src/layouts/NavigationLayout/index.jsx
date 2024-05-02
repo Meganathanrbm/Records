@@ -93,7 +93,6 @@ const NavigationLayout = () => {
                     }
                     alt={item.name}
                     height={15}
-                    srcset=""
                   />
                   <Link
                     to={
@@ -116,7 +115,7 @@ const NavigationLayout = () => {
             style={{ width: "max-content" }}
           >
             <div className="d-flex justify-content-center align-items-center ">
-              <img className="mb-1" src={gift} alt="" srcset="" />
+              <img className="mb-1" src={gift} alt="" />
               <p className="fw-semibold px-3  mb-1">Free Gifts awaits You!</p>
             </div>
             <Link className="" style={{ fontSize: "15px" }}>
@@ -125,11 +124,11 @@ const NavigationLayout = () => {
           </section>
           <ul className="d-flex flex-column gap-3 mt-2">
             <li className="d-flex gap-3">
-              <img src={help} alt="help" srcset="" />
+              <img src={help} alt="help" />
               <a href="/register">Help</a>
             </li>
             <li className="d-flex gap-3">
-              <img src={settings} alt="settings" srcset="" />
+              <img src={settings} alt="settings" />
               <a href="/">Settings</a>
             </li>
           </ul>
@@ -137,13 +136,13 @@ const NavigationLayout = () => {
       </nav>
       <div className=" w-100 p-4">
         <section className="d-flex justify-content-between align-items-center w-100 mb-4">
-          <div class="input-group mb-3 w-25">
-            <span class="input-group-text" id="basic-addon1">
-              <i class="bi bi-search"></i>
+          <div className="input-group mb-3 w-25">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="bi bi-search"></i>
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Search"
               aria-label="Username"
               aria-describedby="basic-addon1"
@@ -162,15 +161,14 @@ const NavigationLayout = () => {
                 }}
                 alt="feedIcon"
               />
-              <ul class="dropdown-menu mr-3">
+              <ul className="dropdown-menu mr-3">
                 {dropdown.map((item, index) => {
                   return (
                     <li key={index}>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         <img
                           src={plusIcon}
                           alt=""
-                          srcset=""
                           style={{ width: "1vw", marginRight: "0.5vw" }}
                         />
                         {item.name}
@@ -181,9 +179,8 @@ const NavigationLayout = () => {
               </ul>
             </div>
 
-            <div class="dropdown">
+            <div className="dropdown">
               <img
-              
                 src={notificationIcon}
                 alt="notification icon"
                 data-bs-toggle="dropdown"
@@ -196,7 +193,7 @@ const NavigationLayout = () => {
               />
 
               <ul
-                class="dropdown-menu "
+                className="dropdown-menu "
                 style={{
                   minHeight: "50vh",
                   minWidth: "15vw",
@@ -228,7 +225,7 @@ const NavigationLayout = () => {
                   </div>
                 ) : (
                   <div className="d-flex flex-column justify-content-center align-items-center p-2">
-                    <img src={notificationIcon} alt="" srcset="" />
+                    <img src={notificationIcon} alt="" />
                     <p className="text-center">
                       Oh! There is no notifications at the moment.
                     </p>
@@ -242,10 +239,10 @@ const NavigationLayout = () => {
               alt=""
               className="rounded-circle"
               style={{
-                  width: "35px",
-                  height: "35px",
-                  cursor: "pointer",
-                }}
+                width: "35px",
+                height: "35px",
+                cursor: "pointer",
+              }}
             />
           </div>
         </section>

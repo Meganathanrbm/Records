@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { IoClose } from "react-icons/io5";
 
 import walktrough from "../../../assets/svg/walktrough.svg";
 import sectionsAndSkills from "../../../constants/skills.constant";
-
 import userApi from "../../../apis/user.api";
-
 import currentUserState from "../../../store/user.store";
 import skillApi from "../../../apis/skill.api";
+import "./walkthrough.css";
 
 const Walktrough = () => {
   const navigate = useNavigate();
+  const [showWarning, setShowWarning] = useState({
+    status: false,
+    message: "",
+  });
   const [showMore, setShowMore] = useState({});
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [currentLoggedInUser, setCurrentLoggedInUser] =
@@ -34,12 +38,26 @@ const Walktrough = () => {
       if (!selectedSkills.includes(item)) {
         setSelectedSkills((prevState) => [...prevState, item]);
       } else {
-        alert("Aldready selected!");
+        setShowWarning({
+          status: true,
+          message: "Aldready selected!",
+        });
       }
     } else {
-      alert("You can only select 5 skills");
+      setShowWarning({
+        status: true,
+        message: "You can only select 5 skills",
+      });
     }
   }
+  //warning for selected skills
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWarning({ status: false, message: "" });
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, [showWarning]);
 
   useEffect(() => {
     skillApi.getSkills({
@@ -75,7 +93,7 @@ const Walktrough = () => {
       <div className="p-4  gap-3 ">
         <Link to="/onboarding">
           <button className="btn btn-secondary mb-3 d-flex gap-2">
-            <i class="bi bi-caret-left"></i>Go Back
+            <i className="bi bi-caret-left"></i>Go Back
           </button>
         </Link>
         <section className="d-flex flex-column gap-3 mt-5">
@@ -93,8 +111,41 @@ const Walktrough = () => {
 
       <div
         className=" w-100 d-flex flex-column justify-content-around align-items-center"
-        style={{ background: "rgba(237, 242, 246, 1)", paddingRight: "10px" }}
+        style={{
+          background: "rgba(237, 242, 246, 1)",
+          paddingRight: "10px",
+          position: "relative",
+        }}
       >
+        {/* Alert / warning */}
+        {showWarning.status && (
+          <div
+            style={{
+              position: "absolute",
+              top: "9%",
+              left: "25px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            className="alert walkthrough_alert alert-warning"
+            role="dialog"
+          >
+            {showWarning.message}
+            <div
+              onClick={() => setShowWarning({ status: false, message: "" })}
+              className=""
+              style={{
+                fontWeight: "bold",
+                paddingLeft: "50px",
+                cursor: "pointer",
+              }}
+            >
+              <IoClose />
+            </div>
+          </div>
+        )}
+
         <section className="w-100 d-flex flex-column px-4  justify-content-center align-items-center">
           <div
             className="w-100 d-flex  justify-content-end align-items-center mt-5 pr-4"
@@ -105,7 +156,7 @@ const Walktrough = () => {
               style={{ height: "5vh" }}
             >
               <span className="input-group-text" id="inputGroup-sizing-sm">
-                <i class="bi bi-search"></i>
+                <i className="bi bi-search"></i>
               </span>
               <input
                 type="search"
@@ -125,10 +176,16 @@ const Walktrough = () => {
               />
             </div>
             <p className="d-flex gap-2 align-items-center">
-              Support <i class="bi bi-info-circle"></i>
+              Support <i className="bi bi-info-circle"></i>
             </p>
           </div>
-          <p>You can select up to 5. Add/Edit later</p>
+          <p
+            style={{
+              color: "#8B8B8B",
+            }}
+          >
+            (You can select up to 5. Add/Edit later)
+          </p>
         </section>
         <div className="w-100 d-flex flex-column justify-content-start align-items-start p-4">
           <section>
@@ -153,7 +210,6 @@ const Walktrough = () => {
                       <img
                         src={item.img}
                         alt={item.name}
-                        srcset=""
                         style={{ width: "20px" }}
                       />
                       <p className="text-center mt-2 pr-2 fw-semibold">
@@ -191,7 +247,6 @@ const Walktrough = () => {
                           <img
                             src={item.img}
                             alt={item.name}
-                            srcset=""
                             style={{ width: "20px" }}
                           />
                           <p className="text-center mt-2 pr-2 fw-semibold">
@@ -201,12 +256,12 @@ const Walktrough = () => {
                       );
                     })}
                   <p onClick={() => toggleShowMore(section.title)}>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0 d-flex justify-content-center align-items-center">
+                    <a className="link-offset-2 link-underline link-underline-opacity-0 d-flex justify-content-center align-items-center">
                       {showMore[section.title] ? "Show less" : "Show more"}
                       {showMore[section.title] ? (
-                        <i class="bi bi-caret-up-fill"></i>
+                        <i className="bi bi-caret-up-fill"></i>
                       ) : (
-                        <i class="bi bi-caret-down-fill"></i>
+                        <i className="bi bi-caret-down-fill"></i>
                       )}
                     </a>
                   </p>
@@ -224,7 +279,6 @@ const Walktrough = () => {
           </button>
         </section>
         {/* </Link> */}
-
       </div>
     </div>
   );

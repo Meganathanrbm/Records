@@ -17,7 +17,7 @@ const LearningContent = () => {
   );
   useEffect(() => {
     youtubeApi.handleGetCourseById({
-      payload: { courseId: "615b6b1b2b4f5c001f2e1e5b" },
+      payload: { courseId: "2zXbRJty4vc" },
       success: (response) => {
         console.log("response", response);
       },
@@ -48,10 +48,10 @@ const LearningContent = () => {
                   height="420"
                   src={videoLink}
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
                 ></iframe>
               </div>
             ) : (

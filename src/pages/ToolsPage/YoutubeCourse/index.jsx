@@ -45,14 +45,13 @@ const YouTubeCourse = () => {
           />
           <div className="p-3">
             <button
-              className="btn d-flex gap-2"
+              className="btn d-flex gap-2 background-gradient"
               style={{
-                backgroundColor: "rgba(235, 124, 73, 1) rgba(240, 79, 82, 1)",
                 color: "white",
               }}
               onClick={convertYoutubeToCourse}
             >
-              Convert <i class="bi bi-arrow-right-short"></i>
+              Convert <i className="bi bi-arrow-right-short"></i>
             </button>
           </div>
         </div>
