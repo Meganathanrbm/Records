@@ -42,6 +42,11 @@
   text-align: center;
 }
 
+.learning_iframe {
+  border-radius: 10px;
+}
+
+
 .learningContent__video h1 {
   font-weight: bold;
 }

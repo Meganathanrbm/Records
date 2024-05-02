@@ -9,7 +9,9 @@ import help from "../../assets/svg/help.svg";
 import dashBoardlogo from "../../assets/svg/dashBoardlogo.svg";
 import styles from "./navigation.module.css";
 import plusIcon from "../../assets/svg/plusIcon.svg";
-import notificationIcon from "../../assets/svg/notification.svg";
+
+import feedIcon from "../../assets/svg/feedBtn.svg";
+import notificationIcon from "../../assets/svg/notificationIcon.svg";
 
 import { useRecoilState } from "recoil";
 import currentUserState from "../../store/user.store";
@@ -149,17 +151,17 @@ const NavigationLayout = () => {
           </div>
           <div className="d-flex justify-content-center align-items-center gap-4">
             <div className="dropdown">
-              <button
-                className="btn d-flex justify-content-center align-items-center "
+              <img
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                src={feedIcon}
                 style={{
-                  backgroundColor: "rgba(235, 124, 73, 1)rgba(240, 79, 82, 1)",
-                  color: "white",
+                  width: "25px",
+                  height: "25px",
+                  cursor: "pointer",
                 }}
-              >
-                <i class="bi bi-plus"></i>
-              </button>
+                alt="feedIcon"
+              />
               <ul class="dropdown-menu mr-3">
                 {dropdown.map((item, index) => {
                   return (
@@ -180,11 +182,19 @@ const NavigationLayout = () => {
             </div>
 
             <div class="dropdown">
-              <i
-                class="bi bi-bell-fill btn"
+              <img
+              
+                src={notificationIcon}
+                alt="notification icon"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-              ></i>
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  cursor: "pointer",
+                }}
+              />
+
               <ul
                 class="dropdown-menu "
                 style={{
@@ -231,6 +241,11 @@ const NavigationLayout = () => {
               src="https://randomuser.me/api/portraits/thumb/men/75.jpg"
               alt=""
               className="rounded-circle"
+              style={{
+                  width: "35px",
+                  height: "35px",
+                  cursor: "pointer",
+                }}
             />
           </div>
         </section>

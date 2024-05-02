@@ -18,6 +18,7 @@ import linkedin from "../../assets/Linkedin.png";
 import coursera from "../../assets/Coursera.png";
 import udemy from "../../assets/Udemy.png";
 import calender from "../../assets/calender.png";
+import HeatmapCalender from "./HeatmapCalender";
 
 const DashBoard = () => {
   const [currentLoggedInUser, setCurrentLoggedInUser] =
@@ -134,7 +135,7 @@ const DashBoard = () => {
 
           <div className="dashboard__section2_active">
             <h4>Learning Activities</h4>
-            <img src={calender} alt="" width={"100%"} height={"300px"} />
+            <HeatmapCalender />
           </div>
 
           <div className="dashboard__section2_performance">

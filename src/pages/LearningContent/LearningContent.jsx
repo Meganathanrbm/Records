@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./learningContent.css";
 import {
   IoIosArrowBack,
@@ -12,6 +12,9 @@ import LearningContentSection from "../../components/learningContentSection2/Lea
 import youtubeApi from "../../apis/youtube.api";
 
 const LearningContent = () => {
+  const [videoLink, setVideoLink] = useState(
+    "https://www.youtube.com/embed/615b6b1b2b4f5c001f2e1e5b" 
+  );
   useEffect(() => {
     youtubeApi.handleGetCourseById({
       payload: { courseId: "615b6b1b2b4f5c001f2e1e5b" },
@@ -37,14 +40,29 @@ const LearningContent = () => {
                 Enrolled on <span>Udemy</span>
               </p>
             </div>
-
-            <div className="learningContent__video">
-              <div className="learningContent__video_icon">
-                <FaPlay fontSize={50} />
+            {videoLink ? (
+              <div className="learningVideo_container">
+                <iframe
+                className="learning_iframe"
+                  width="800"
+                  height="420"
+                  src={videoLink}
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
               </div>
-              <h1>Web Development</h1>
-              <h2>MasterClass</h2>
-            </div>
+            ) : (
+              <div className="learningContent__video">
+                <div className="learningContent__video_icon">
+                  <FaPlay fontSize={50} />
+                </div>
+                <h1>Web Development</h1>
+                <h2>MasterClass</h2>
+              </div>
+            )}
           </div>
           <div className="learningContent__notes">
             <div className="learningContent__notes_title">

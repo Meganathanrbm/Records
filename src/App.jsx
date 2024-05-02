@@ -69,7 +69,7 @@ function App() {
 
             {/* Routes for authenticated users */}
 
-            <Route element={<ProtectedRouter />}>
+            {/* <Route element={<ProtectedRouter />}> */}
               <Route element={<NavigationLayout />}>
                 {/* Authenticated routes */}
                 {navigationRoutes.map((route, index) => (
@@ -80,7 +80,7 @@ function App() {
                   />
                 ))}
               </Route>
-            </Route>
+            {/* </Route> */}
 
             {/* Routes for non-authenticated users */}
             {nonAuthRoutes.map((route, index) => (
