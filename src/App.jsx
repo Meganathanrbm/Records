@@ -20,6 +20,7 @@ import nonAuthRoutes from "./router/non-auth-routes";
 import SuspenseLayout from "./layouts/SuspenseLayout";
 import LearningContent from "./pages/LearningContent/LearningContent";
 import ProtectedRouter from "./middleware/ProtectedRouter";
+import io from "socket.io-client";
 
 function App() {
   const router = createBrowserRouter([
@@ -58,6 +59,7 @@ function App() {
       element: <Walktrough />,
     },
   ]);
+
   return (
     <>
       {/* <RouterProvider router={router} /> */}

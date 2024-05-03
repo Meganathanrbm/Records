@@ -10,10 +10,11 @@ import { FaPlay } from "react-icons/fa";
 import LearningContentCard from "../../components/learningContentCard/LearningContentCard";
 import LearningContentSection from "../../components/learningContentSection2/LearningContentSection";
 import youtubeApi from "../../apis/youtube.api";
+import YoutubePlayer from "./YoutubePlayer";
 
 const LearningContent = () => {
   const [videoLink, setVideoLink] = useState(
-    "https://www.youtube.com/embed/615b6b1b2b4f5c001f2e1e5b" 
+    "https://www.youtube.com/embed/2zXbRJty4vc"
   );
   useEffect(() => {
     youtubeApi.handleGetCourseById({
@@ -41,19 +42,7 @@ const LearningContent = () => {
               </p>
             </div>
             {videoLink ? (
-              <div className="learningVideo_container">
-                <iframe
-                className="learning_iframe"
-                  width="800"
-                  height="420"
-                  src={videoLink}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
-              </div>
+              <YoutubePlayer videoId="2zXbRJty4vc" />
             ) : (
               <div className="learningContent__video">
                 <div className="learningContent__video_icon">
