@@ -2,7 +2,7 @@ import SkillCard from "./SkillCard";
 import badge from "../assets/svg/skillBadge.svg";
 import report from "../assets/svg/skillReport.svg";
 import RadarChart from "../pages/ProfilePage/radarChart";
-const SkillProfile = () => {
+const SkillProfile = ({ skillRepository }) => {
   return (
     <div className="row">
       <div className="col-7">
@@ -17,18 +17,13 @@ const SkillProfile = () => {
             className="d-flex gap-1 justify-content-start "
             style={{ flexWrap: "wrap" }}
           >
-            <SkillCard text="ui" />
-            <SkillCard text="css" />
-            <SkillCard text="adobe" />
-            <SkillCard text="ui" />
-            <SkillCard text="css" />
-
-            <SkillCard text="css" />
-            <SkillCard text="adobe" />
-            <SkillCard text="ui" />
-            <SkillCard text="css" />
-
-            <SkillCard text="ui" />
+            {skillRepository?.roleBasedSkills.map((skill) => (
+              <SkillCard
+                endorsment={skill.endorsedCount}
+                key={skill.skillId}
+                text={skill.skill}
+              />
+            ))}
           </div>
         </div>
         <div className="rounded-4 border mt-3 " style={{ padding: "1rem" }}>
@@ -42,18 +37,13 @@ const SkillProfile = () => {
             className="d-flex gap-1 justify-content-start "
             style={{ flexWrap: "wrap" }}
           >
-            <SkillCard text="ui" />
-            <SkillCard text="css" />
-            <SkillCard text="adobe" />
-            <SkillCard text="ui" />
-            <SkillCard text="css" />
-
-            <SkillCard text="css" />
-            <SkillCard text="adobe" />
-            <SkillCard text="ui" />
-            <SkillCard text="css" />
-
-            <SkillCard text="ui" />
+            {skillRepository?.interestBasedSkills.map((skill) => (
+              <SkillCard
+                endorsment={skill.endorsedCount}
+                key={skill.skillId}
+                text={skill.skillName}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -75,7 +65,8 @@ const SkillProfile = () => {
                   fontWeight: "700",
                 }}
               >
-                <img src={badge} alt="badge" width={40} /> 22
+                <img src={badge} alt="badge" width={40} />{" "}
+                {skillRepository?.skillBadges?.roleBasedCount}
               </h2>
               <p
                 style={{
@@ -95,7 +86,8 @@ const SkillProfile = () => {
                   fontWeight: "700",
                 }}
               >
-                <img src={badge} alt="badge" width={40} /> 7
+                <img src={badge} alt="badge" width={40} />{" "}
+                {skillRepository?.skillBadges?.interestBasedCount}
               </h2>
               <p
                 style={{
@@ -114,8 +106,7 @@ const SkillProfile = () => {
           className="rounded-4 p-2 border mt-2"
           style={{ minHeight: "50vh" }}
         >
-          {/* <img src={report} alt="report" style={{ width: "100%" }} /> */}
-          <RadarChart />
+          <RadarChart percentages={skillRepository?.percentages} />
         </div>
       </div>
     </div>

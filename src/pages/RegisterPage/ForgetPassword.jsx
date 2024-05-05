@@ -1,11 +1,30 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import logo2 from "../../assets/svg/forgotpassword.svg";
 import styles from "./register.module.css";
+import authApi from "../../apis/auth.api";
 
 const ForgetPassword = ({ setForgetPassword }) => {
   const [email, setEmail] = useState(true);
-  const navigate = useNavigate();
+  //reset password request
+  const [rprEmail, setRprEmail] = useState("");
+
+
+  const handleResetPassword = () => {
+    console.log(rprEmail);
+    authApi.resetPassword({
+      payload: { email: rprEmail },
+      success: (res) => {
+        console.log("Reset Password Request Success", res);
+        setEmail(false);
+      },
+      error: (err) => {
+        console.error(
+          err?.response?.data?.message || "Failed to Rest Password Request"
+        );
+        console.log("Rest Password Request Error", err);
+      },
+    });
+  };
 
   return (
     <div
@@ -31,6 +50,8 @@ const ForgetPassword = ({ setForgetPassword }) => {
               <section className="d-flex flex-column justify-content-center align-items-strech w-50">
                 <div className="mb-3">
                   <input
+                    value={rprEmail}
+                    onChange={(e) => setRprEmail(e.target.value)}
                     type="email"
                     className="form-control"
                     id="formGroupExampleInput"
@@ -40,7 +61,7 @@ const ForgetPassword = ({ setForgetPassword }) => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={(e) => setEmail(false)}
+                  onClick={handleResetPassword}
                 >
                   Send
                 </button>
@@ -54,7 +75,7 @@ const ForgetPassword = ({ setForgetPassword }) => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => navigate("/")}
+                  onClick={() => setForgetPassword(false)}
                 >
                   Sign In Now
                 </button>

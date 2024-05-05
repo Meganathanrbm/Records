@@ -68,6 +68,7 @@
   top: 150px;
   /* left: 60px; */
   color: blue;
+  cursor: pointer;
 }
 
 .dashboard__container2 h4 {

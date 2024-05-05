@@ -15,23 +15,21 @@ import userApi from "../../apis/user.api";
 const Profile = () => {
   const [profileType, setProfileType] = useState("basic");
   const [userProfile, setUserProfile] = useState({});
+
+  // console.log(userProfile);
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
 
   useEffect(() => {
     userApi.handlegetProfile({
-      payload: {
-        userId: currentLoggedInUser.userId,
-      },
       success: (response) => {
         setUserProfile(response.data.data);
       },
       error: (error) => {
-        console.log("error", error);
+        console.log("get profile details error", error);
       },
     });
   }, []);
-
   function handleOnclick(type) {
     setProfileType(type);
   }
@@ -60,7 +58,7 @@ const Profile = () => {
               color: "#12131A",
             }}
           >
-            {userProfile?.name}
+            {userProfile?.fullName}
           </h4>
         </div>
         <ul
@@ -123,7 +121,6 @@ const Profile = () => {
       </div>
 
       <div className="col col-8 px-4 ">
-
         {/* <div className="row">{profileType === "basic" && <BasicProfile />}</div> */}
 
         {/* <div className="row">{profileType === "basic" && <BasicProfile />}</div> */}
@@ -135,30 +132,34 @@ const Profile = () => {
         </div>
         <div className="row">
           {profileType === "education" && (
-            <EducationProfile userProfile={userProfile} />
+            <EducationProfile educations={userProfile?.educations} />
           )}
         </div>
         <div className="row">
-          {profileType === "work" && <WorkProfile userProfile={userProfile} />}
+          {profileType === "work" && (
+            <WorkProfile workexperiences={userProfile?.workexperiences} />
+          )}
         </div>
         <div className="row">
           {profileType === "license" && (
-            <LicenseProfile userProfile={userProfile} />
+            <LicenseProfile
+              licensecertifications={userProfile?.licensecertifications}
+            />
           )}
         </div>
         <div className="row">
           {profileType === "skill" && (
-            <SkillProfile userProfile={userProfile} />
+            <SkillProfile skillRepository={userProfile?.skillRepository} />
           )}
         </div>
         <div className="row">
           {profileType === "project" && (
-            <ProjectProfile userProfile={userProfile} />
+            <ProjectProfile projects={userProfile?.projects} />
           )}
         </div>
         <div className="row">
           {profileType === "other" && (
-            <OtherProfile userProfile={userProfile} />
+            <OtherProfile activities={userProfile?.activities} />
           )}
         </div>
       </div>

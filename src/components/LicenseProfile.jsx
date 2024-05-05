@@ -1,60 +1,148 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import plus from "../assets/svg/plus.svg";
 import ProfileCard from "./ProfileCard";
 import logo from "../assets/svg/google.svg";
 
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 import VerificationModal from "./modals/VerificationModal";
 import { Button } from "react-bootstrap";
+import LicenseProfileModal from "./modals/LicenseProfileModal";
+import profileApi from "../apis/profile.api";
 
-const LicenseProfile = () => {
-  const [data, setData] = useState([
-    {
-      name: "Placement Representative of the Department",
-      field: "At PSG Polytechnic College | Academic",
-      startDate: "Mar 2018",
-      endDate: "Apr 2021",
-      skills: ["html", "css", "js"],
-      image: logo,
-      button: "Credentials",
-    },
-    {
-      name: "Placement Representative of the Department",
-      field: "At PSG Polytechnic College | Academic",
-      startDate: "Mar 2018",
-      endDate: "Apr 2021",
-      skills: ["html", "css", "js"],
-      image: logo,
-      button: "Credentials",
-    },
-  ]);
+const LicenseProfile = ({ licensecertifications }) => {
+  const [data, setData] = useState([]);
+  const [isVerified, setIsVerified] = useState(false);
+  const [show, setShow] = useState(false);
+  const [skill, setSkill] = useState("");
+  const [verifyModalShow, setVerifyModalShow] = useState(false);
+  const [userInput, setUserInput] = useState({
+    certificateName: "",
+    organisation: "",
+    doneVia: "",
+    issueDate: "",
+    expirationDate: "",
+    credentialID: "",
+    credentialURL: "",
+    skills: [],
+    verifierEmail: "",
+    isEdit: false,
+    licenseCertificationId: "",
+  });
 
-  const [userInput, setUserInput] = useState([
-    {
+  useEffect(() => {
+    setData(licensecertifications);
+  }, [licensecertifications]);
+
+  const handleSkill = () => {
+    setUserInput({ ...userInput, skills: [...skills, skill] });
+    setSkill("");
+  };
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    setShow(true);
+    setUserInput({
       certificateName: "",
       organisation: "",
       doneVia: "",
       issueDate: "",
-      expirationDate:"",
-      credentialID:"",
-      credentialURL:"",
-      skills:[]
-    },
-  ]);
-
-
-
-  const [show, setShow] = useState(false);
-  const [skill, setSkill] = useState("")
-  const handleSkill = ()=>{
-    setUserInput({...userInput, skills:[...skills,skill ]})
-    setSkill("")
-  }
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [verifyModalShow, setVerifyModalShow] = useState(false);
-  const handleVerifModalClose = () => setVerifyModalShow(false);
+      expirationDate: "",
+      credentialID: "",
+      credentialURL: "",
+      skills: [],
+      verifierEmail: "",
+      isEdit: false,
+      licenseCertificationId: "",
+    });
+  };
+  const handleVerifModalClose = () => {
+    setVerifyModalShow(false);
+    setIsVerified(false);
+    window.location.reload();
+  };
   const handleVerifModalShow = () => setVerifyModalShow(true);
+
+  const handleForm1Submit = (e) => {
+    e.preventDefault();
+    handleClose();
+    handleVerifModalShow();
+  };
+  const handleForm2Submit = (e) => {
+    e.preventDefault();
+    setIsVerified(true);
+    const payloadData = {
+      certificationName: userInput.certificateName,
+      organization: userInput.organisation,
+      doneVia: userInput.doneVia,
+      issuedDate: userInput.issueDate,
+      expirationDate: userInput.expirationDate,
+      credentialId: userInput.credentialID,
+      credentialURL: userInput.credentialURL,
+      skills: [
+        {
+          skillId: "a9cdf97638d14d06b6e6cb21c4d3c9cc",
+        },
+        {
+          skillId: "a4cb1e2bf12a46529c5eb2d5e40e9492",
+        },
+        {
+          skillId: "1197e808d7914a6ebae88f5435847d84",
+        },
+      ],
+    };
+
+    if (!userInput.isEdit) {
+      profileApi.addLicenseCertification({
+        payload: payloadData,
+        success: (res) => {
+          console.log("License add successfully", res);
+        },
+        error: (err) => {
+          console.log("failed to add License", err);
+        },
+      });
+    } else {
+      profileApi.updateLicenseCertification({
+        payload: payloadData,
+        suffPath: userInput.licenseCertificationId,
+        success: (res) => {
+          console.log("License update successfully", res);
+        },
+        error: (err) => {
+          console.log("failed to update License", err);
+        },
+      });
+    }
+    setUserInput({
+      certificateName: "",
+      organisation: "",
+      doneVia: "",
+      issueDate: "",
+      expirationDate: "",
+      credentialID: "",
+      credentialURL: "",
+      skills: [],
+      verifierEmail: "",
+      isEdit: false,
+      licenseCertificationId: "",
+    });
+  };
+  const handleEdit = (data) => {
+    setUserInput({
+      ...userInput,
+      certificateName: data.certificationName,
+      organisation: data.organization,
+      doneVia: data.doneVia,
+      issueDate: data.issuedDate,
+      expirationDate: data.expirationDate,
+      credentialID: data.credentialId,
+      credentialURL: data.credentialURL,
+      isEdit: false,
+      licenseCertificationId: data.licenseCertificationId,
+      skills: data.skills,
+      isEdit: true,
+      verified: false,
+    });
+  };
   return (
     <div>
       {" "}
@@ -63,7 +151,7 @@ const LicenseProfile = () => {
           Licenses and Certifications
         </h3>
         <button
-           onClick={handleShow}
+          onClick={handleShow}
           type="button"
           className="col btn d-flex justify-content-center align-items-center gap-2  "
           style={{
@@ -79,235 +167,39 @@ const LicenseProfile = () => {
           <img src={plus} alt="add" width={20} height={20} />
         </button>
       </div>
-        {/* modal */}
-        <Modal show={show} onHide={handleClose} size="lg" animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Credentials</Modal.Title>
-        </Modal.Header>
-        <form
-          className="pt-4 d-flex gap-4 flex-column"
-          style={{ color: "#8F8F8F", fontSize: "18px" }}
-        >
-          <div style={{marginLeft:"55px"}} className="form-row justify-content-start d-flex gap-4 ">
-            {/* License/Certification Name */}
-            <div
-              className="form-group col-10"
-              style={{ position: "relative", zIndex: "1" }}
-            >
-              <label htmlFor="License/Certification Name">License/Certification Name</label>
-              <input
-                type="text"
-                className="form-control  "
-                placeholder="Ex: Social Media Intern"
-                value={userInput.certificateName}
-                onChange={(e)=> setUserInput({...userInput, certificateName:e.target.value}) }
-                style={{
-                  backgroundColor: "#F3F3F3",
-                  color: "#858585",
-                  fontSize: "18px",
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="form-row justify-content-center d-flex gap-4 ">
-            {/* Organisation */}
-            <div
-              className="form-group col-5"
-              style={{ position: "relative", zIndex: "1" }}
-            >
-              <label htmlFor="Organisation">Organisation</label>
-              <input
-                type="text"
-                className="form-control  "
-                placeholder="Ex: ABC Private Limited"
-                value={userInput.organisation}
-                onChange={(e)=> setUserInput({...userInput, organisation:e.target.value}) }
-                style={{
-                  backgroundColor: "#F3F3F3",
-                  color: "#858585",
-                  fontSize: "18px",
-                }}
-              />
-            </div>
-            {/*Done Via*/}
-            <div
-              className="form-group col-5"
-              style={{ position: "relative", zIndex: "1" }}
-            >
-              <label htmlFor="Done Via">Done Via</label>
-              <select
-              onClick={(e)=> setUserInput({...userInput, doneVia:e.target.value})}
-               style={{
-                backgroundColor: "#F3F3F3",
-                color: "#858585",
-                fontSize: "18px",
-              }}
-              className="form-select" name="type" id="">
-                <option selected >Select</option>
-                <option  >Office</option>
-                <option  >WFH</option>
-              </select>
-            </div>
-
-          </div>
-
-            {/* Date */}
-            <div className="form-row justify-content-center d-flex gap-4">
-            <div
-              className="form-group col-5"
-              style={{ position: "relative", zIndex: "1" }}
-            >
-              <label htmlFor="Issued Date">Issued Date</label>
-              <input
-                type="Date"
-                className="form-control  "
-                id="date"
-                style={{
-                  backgroundColor: "#F3F3F3",
-                  color: "#858585",
-                  fontSize: "18px",
-                }}
-                value={userInput.issueDate}
-                onChange={(e)=> setUserInput({...userInput, issueDate:e.target.value})}
-              />
-
-            </div>
-
-            {/* Expiration Date */}
-            <div
-              className="form-group col-5"
-              style={{ position: "relative", zIndex: "1" }}
-            >
-              <label htmlFor="Expiration Date">Expiration Date</label>
-              <input
-                type="Date"
-                className="form-control  "
-                id="date"
-                style={{
-                  backgroundColor: "#F3F3F3",
-                  color: "#858585",
-                  fontSize: "18px",
-                }}
-                value={userInput.expirationDate}
-                onChange={(e)=> setUserInput({...userInput, expirationDate:e.target.value})}
-              />
-
-            </div>
-
-          </div>
-          <div className="form-row justify-content-center d-flex gap-4 ">
-            {/* Credential ID */}
-            <div
-              className="form-group col-5"
-              style={{ position: "relative", zIndex: "1" }}
-            >
-              <label htmlFor="Credential ID">Credential ID</label>
-              <input
-                type="text"
-                className="form-control  "
-                value={userInput.credentialID}
-                onChange={(e)=> setUserInput({...userInput, credentialID:e.target.value}) }
-                style={{
-                  backgroundColor: "#F3F3F3",
-                  color: "#858585",
-                  fontSize: "18px",
-                }}
-              />
-            </div>
-            <div
-              className="form-group col-5"
-              style={{ position: "relative", zIndex: "1" }}
-            >
-              <label htmlFor="Credential URL">Credential URL</label>
-              <input
-                type="text"
-                className="form-control  "
-                placeholder="Ex: Social Media Intern"
-                value={userInput.credentialURL}
-                onChange={(e)=> setUserInput({...userInput, credentialURL:e.target.value}) }
-                style={{
-                  backgroundColor: "#F3F3F3",
-                  color: "#858585",
-                  fontSize: "18px",
-                }}
-              />
-            </div>
-          </div>      
-    
-             {/* Skills*/}
-             <div className="form-row justify-content-center d-flex gap-4 ">
-          <div
-              className="form-group col-10"
-              style={{ position: "relative", zIndex: "1" , marginBottom:"10px"}}
-            >
-              <label htmlFor="Skills">Skills</label>
-              <p style={{color:"black", fontSize:"18px"}}>Earn upto 5 skill badges by getting verified from your verifier.</p>
-              <div className="d-flex">
-              <input
-                type="text"
-                className="form-control  "
-                placeholder="Ex: HTML, CSS"
-                value={skill}
-                onChange={(e)=>setSkill(e.target.value) }
-                style={{
-                  backgroundColor: "#F3F3F3",
-                  color: "#858585",
-                  fontSize: "18px",
-                  width:"250px"
-                }}
-              />
-              <button style={{backgroundColor: "#F3F3F3",color:"#EB7C49", fontWeight:"500"}} className="btn">Add Skills 
-              <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.1534 7.34826H6.87941V11.52C6.87941 11.7413 6.78935 11.9535 6.62904 12.11C6.46874 12.2664 6.25132 12.3544 6.02461 12.3544C5.7979 12.3544 5.58048 12.2664 5.42017 12.11C5.25987 11.9535 5.16981 11.7413 5.16981 11.52V7.34826H0.895815C0.669108 7.34826 0.451687 7.26035 0.291381 7.10388C0.131075 6.94741 0.0410156 6.73519 0.0410156 6.51391C0.0410156 6.29262 0.131075 6.0804 0.291381 5.92393C0.451687 5.76746 0.669108 5.67956 0.895815 5.67956H5.16981V1.50781C5.16981 1.28653 5.25987 1.07431 5.42017 0.917837C5.58048 0.761366 5.7979 0.673462 6.02461 0.673462C6.25132 0.673462 6.46874 0.761366 6.62904 0.917837C6.78935 1.07431 6.87941 1.28653 6.87941 1.50781V5.67956H11.1534C11.3801 5.67956 11.5975 5.76746 11.7578 5.92393C11.9181 6.0804 12.0082 6.29262 12.0082 6.51391C12.0082 6.73519 11.9181 6.94741 11.7578 7.10388C11.5975 7.26035 11.3801 7.34826 11.1534 7.34826Z" fill="url(#paint0_linear_78_680)"/>
-<defs>
-<linearGradient id="paint0_linear_78_680" x1="5.92091" y1="0.609342" x2="5.92091" y2="14.8114" gradientUnits="userSpaceOnUse">
-<stop stop-color="#EB7C49"/>
-<stop offset="1" stop-color="#F04F52"/>
-</linearGradient>
-</defs>
-</svg>
-</button>
-              </div>
-              </div>
-            </div>
-        </form>
-        <Modal.Footer>
-          <Button
-                onClick={()=>{
-                  handleClose()
-                  handleVerifModalShow()
-                }}
-                  className=" d-flex flex-row btn justify-content-center align-items-center gap-2"
-                  style={{
-                    color: "white",
-
-                    background:
-                      "linear-gradient(180deg, #EB7C49 -0.55%, #F04F52 121.03%)",
-                    border: "none",
-
-                    maxWidth: "250px",
-                    fontSize: "14px",
-                  }}
-                >
-Save
-
-                </Button>
-        </Modal.Footer>
-      </Modal>
-      <VerificationModal show2={verifyModalShow} handleClose2={handleVerifModalClose} />
+      {/* modal */}
+      <LicenseProfileModal
+        userInput={userInput}
+        setUserInput={setUserInput}
+        show={show}
+        handleClose={handleClose}
+        handleForm1Submit={handleForm1Submit}
+      />
+      <VerificationModal
+        show2={verifyModalShow}
+        handleClose2={handleVerifModalClose}
+        handleForm2Submit={handleForm2Submit}
+        isVerified={isVerified}
+        userInput={userInput}
+        setUserInput={setUserInput}
+        setIsVerified={setIsVerified}
+      />
       <div>
         {data.map((el, index) => {
           return (
             <ProfileCard
+              handleEdit={handleEdit}
               key={index}
-              name={el.name}
-              field={el.field}
-              endDate={el.endDate}
-              verified={el.verified}
-              image={el.image}
-              skills={el.skills}
-              button={el.button}
+              name={el.certificationName}
+              field={`${el.organization}  | ${el.doneVia}`}
+              endDate={el.issuedDate}
+              verified={el?.verified}
+              image={el?.image}
+              skills={el?.skills}
+              button={"Credentials"}
+              url={el?.credentialURL}
+              isEdit={setShow}
+              data={el}
             />
           );
         })}

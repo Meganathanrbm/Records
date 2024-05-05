@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./heatmapcalender.css";
 
-const HeatmapCalender = () => {
-  const year = 2024;
-  const month = 3;
-  const daysInMonth = new Date(year, month, 0).getDate();
+const HeatmapCalender = ({ learningData }) => {
+  const [contributeData, setcontributeData] = useState();
+  const date = new Date(learningData && learningData[0].date);
+  const endDate = new Date(
+    learningData && learningData[learningData.length - 1].date
+  );
+  console.log(contributeData);
   // Create an array of day numbers for the month (1 to )
   const daysArray = Array(35).fill(0);
-  const start = new Date(year, month, 1).getDay();
-  const end = start + daysInMonth;
-
+  const start = date.getDay();
+  const end = endDate.getDate();
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
   //Contributions data
   const data = {
     1: 5,
@@ -48,7 +49,9 @@ const HeatmapCalender = () => {
     30: 9,
     31: 10,
   };
-
+  useEffect(() => {
+    setcontributeData(learningData);
+  }, []);
   return (
     <div
       style={{
@@ -77,17 +80,29 @@ const HeatmapCalender = () => {
             key={i}
             data-tooltip-id="day-tooltip"
             className={`${
-              i > start && i < end
-                ? data[i - start] >= 12
+              i >= start && i <= end
+                ? contributeData && contributeData[i - start + 1]?.learned >= 24
                   ? "first-order "
-                  : data[i - start] >= 8 && data[i - start] < 12
+                  : contributeData &&
+                    contributeData[i - start + 1]?.learned >= 16 &&
+                    contributeData &&
+                    contributeData[i - start + 1]?.learned < 24
                   ? "second-order"
-                  : data[i - start] >= 4 && data[i - start] < 8
+                  : contributeData &&
+                    contributeData[i - start + 1]?.learned >= 8 &&
+                    contributeData &&
+                    contributeData[i - start + 1]?.learned < 16
                   ? "third-order"
                   : "fourth-order"
                 : "empty-day"
             } heatmap-day `}
-            data-tooltip-content={`${data[i - start]}  Contributions`}
+            data-tooltip-content={
+              i >= start && i <= end
+                ? `${
+                    contributeData && contributeData[i - start + 1]?.learned
+                  }  Contributions`
+                : ""
+            }
           ></div>
         ))}
       </div>

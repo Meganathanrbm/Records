@@ -8,6 +8,7 @@ const authApi = {
     const {
       auth: { login },
     } = apiPath;
+
     axios.postRequest({ path: login, payload, success, error });
   },
   handleLogout: ({ success, error }) => {
@@ -45,6 +46,23 @@ const authApi = {
       auth: { verificationEmail },
     } = apiPath;
     axios.postRequest({ path: verificationEmail, payload, success, error });
+  },
+  resetPassword: ({ payload, success, error }) => {
+    const {
+      auth: { forgotPassword },
+    } = apiPath;
+    axios.postRequest({ path: forgotPassword, payload, success, error });
+  },
+  changePassword: ({ payload, pathSuff, success, error }) => {
+    const {
+      auth: { changePassword },
+    } = apiPath;
+    axios.postRequest({
+      path: changePassword + pathSuff,
+      payload,
+      success,
+      error,
+    });
   },
 };
 

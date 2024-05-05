@@ -10,8 +10,17 @@ const userApi = {
     axios.putRequest({ path: onboarding, payload, success, error });
   },
   handlegetProfile: ({ payload, success, error }) => {
-    const getProfile = apiPath.user.getProfile(payload.userId);
+    const {
+      user: { getProfile },
+    } = apiPath;
+
     axios.getRequest({ path: getProfile, success, error });
+  },
+  dashboardData: ({ payload, success, error }) => {
+    const {
+      user: { dashboard },
+    } = apiPath;
+    axios.getRequest({ path: dashboard, success, error });
   },
 };
 

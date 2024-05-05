@@ -35,12 +35,14 @@ const Signin = () => {
         navigate("/onboarding");
       },
       error: (err) => {
+        alert("Email or Password may incorrect!");
         message.error(
           err?.response?.data?.message || "Email or Password may incorrect!"
         );
         console.log("Login Error", err);
       },
     });
+    setUserData({ email: "", password: "" });
   }
 
   const checkIfUserIsLoggedIn = () => {

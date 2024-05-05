@@ -1,6 +1,7 @@
 import greentick from "../assets/svg/greenTick.svg";
 import edit from "../assets/svg/editIcon.svg";
 import link from "../assets/svg/link.svg";
+import defaultImage from "../assets/svg/noImage.svg";
 const ProfileCard = ({
   name,
   field,
@@ -12,24 +13,35 @@ const ProfileCard = ({
   skills,
   duration,
   button,
+  isEdit,
+  data,
+  handleEdit,
+  url,
 }) => {
+  const handleEditdata = () => {
+    handleEdit(data);
+    isEdit(true);
+  };
   return (
     <div
       className="my-4 row gx-2 rounded-4 p-4 border "
       style={{ position: "relative" }}
     >
       <div className="col-1">
-        <img src={image} alt="institute logo" width={50} />
+        <img src={image || defaultImage} alt="institute logo" width={50} />
       </div>
       <div className="col-11">
         <img
+          onClick={handleEditdata}
           src={edit}
           alt="edit"
           style={{
             position: "absolute",
-            right: "10px",
-            top: 10,
+            right: "15px",
+            top: 15,
             cursor: "pointer",
+            height: "20px",
+            width: "20px",
           }}
           width={17}
           height={17}
@@ -44,11 +56,27 @@ const ProfileCard = ({
           {field}
         </h5>
         <p style={{ color: "#858585" }}>
-          {startDate ? `${startDate} -` : `Issued`} {endDate}{" "}
-          {duration ? "| " : null}
-          {duration}
+          {startDate
+            ? `${new Date(startDate).toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              })} -`
+            : `Issued`}{" "}
+          {endDate
+            ? new Date(endDate).toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              })
+            : null}{" "}
+          {duration && "| " + duration}
         </p>
-        <div className="d-flex gap-2 mb-1">
+
+        <div
+          style={{
+            flexWrap: "wrap",
+          }}
+          className="d-flex gap-2 mb-1"
+        >
           {skills &&
             skills.map((skill, index) => {
               return (
@@ -64,12 +92,15 @@ const ProfileCard = ({
                   }}
                   key={index}
                 >
-                  {skill}
+                  {skill.skillName}
                 </button>
               );
             })}
         </div>
-        <p style={{ fontWeight: 400, fontSize: "15px" }}>{description}</p>
+        <p style={{ fontWeight: 400, fontSize: "15px" }}>
+          {description &&
+            (description?.length < 200 ? description : description + "...")}
+        </p>
       </div>
       <div className="d-flex justify-content-end">
         {button && (
@@ -82,7 +113,9 @@ const ProfileCard = ({
               background: "white",
             }}
           >
-            {button} <img src={link} alt="link" width={15} />
+            <a href={url ? url : "#"}>
+              {button} <img src={link} alt="link" width={15} />
+            </a>
           </button>
         )}
       </div>

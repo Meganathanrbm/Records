@@ -20,7 +20,7 @@ const postRequest = (data) => {
 };
 
 const putRequest = (data) => {
-  const { path, payload, success, error, config, final } = data;
+  const { path, payload, success, config, error, final } = data;
   axiosInstance
     .put(path, payload, config)
     .then(success)

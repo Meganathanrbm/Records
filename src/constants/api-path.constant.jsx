@@ -22,10 +22,11 @@ const apiPathConstants = {
     verificationEmail: setBaseUrlPrefix("/auth/send/verification-email"),
   },
   user: {
-    getProfile: (userId) => setBaseUrlPrefix(`/user/profile/${userId}`),
+    getProfile: setBaseUrlPrefix(`/user/profile`),
     updateUsername: setBaseUrlPrefix("/user/username"),
     checkUsernameAvailability: setBaseUrlPrefix("/user/username-availability"),
     onboarding: setBaseUrlPrefix("/user/onboarding"),
+    dashboard: setBaseUrlPrefix("/user/dashboard"),
   },
   youtube: {
     createCourse: setBaseUrlPrefix("/tools/youtube/course"),
@@ -35,6 +36,23 @@ const apiPathConstants = {
   },
   skill: {
     getSkills: setBaseUrlPrefix("/skill"),
+  },
+  learnings: {
+    getLearnings: setBaseUrlPrefix("/learnings"),
+  },
+  profile: {
+    updateBasicProfile: setBaseUrlPrefix("/user/profile/basic-profile"),
+    addEducation: setBaseUrlPrefix("/user/profile/education"),
+    updateEducation: setBaseUrlPrefix("/user/profile/education/"),
+    addWorkExpereince: setBaseUrlPrefix("/user/profile/work-experience"),
+    updateWorkExpereince: setBaseUrlPrefix("/user/profile/work-experience/"),
+    addLicenseCertification:setBaseUrlPrefix("/user/profile/license-certification"),
+    updateLicenseCertification:setBaseUrlPrefix("/user/profile/license-certification/"),
+    addProject:setBaseUrlPrefix("/user/profile/project"),
+    updateProject:setBaseUrlPrefix("/user/profile/project/"),
+    addActivity:setBaseUrlPrefix("/user/profile/activity"),
+    updateActivity:setBaseUrlPrefix("/user/profile/activity/"),
+
   },
 };
 

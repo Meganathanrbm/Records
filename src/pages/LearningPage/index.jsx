@@ -13,25 +13,36 @@ import currentUserState from "../../store/user.store";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import learningApi from "../../apis/learning.api";
 
 const Learning = () => {
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
+  const [leanringData, setLeanringData] = useState();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    youtubeApi.handlegetAllCourses({
-      payload: { userId: currentLoggedInUser.userId },
-      success: (response) => {
-        console.log("response", response);
+    learningApi.getLearnings({
+      success: (res) => {
+        console.log("response", res.data.data);
+        setLeanringData(res.data.data);
       },
-      error: (error) => {
-        console.log("error", error);
+      error: (err) => {
+        console.log("error", err);
       },
     });
+    // youtubeApi.handlegetAllCourses({
+    //   payload: { userId: currentLoggedInUser.userId },
+    //   success: (response) => {
+    //     console.log("response", response);
+    //   },
+    //   error: (error) => {
+    //     console.log("error", error);
+    //   },
+    // });
   }, []);
 
   return (
@@ -39,10 +50,13 @@ const Learning = () => {
       <div className="learning__section">
         <h4 className="pb-3">My Learnings</h4>
         <div className="learning__card_section">
-          <LearningCard val={70} />
-          <LearningCard val={20} />
-          <LearningCard val={50} />
-          <LearningCard val={30} />
+          {leanringData?.myLearnings.map((learning) => (
+            <LearningCard
+              id={learning.youtubeCourseId}
+              data={learning}
+              val={70}
+            />
+          ))}
         </div>
       </div>
 
@@ -152,9 +166,9 @@ const Learning = () => {
         </Modal>
         <div className="learing__section2_learningGoal">
           <div className="progress-bar">
-            <p>41%</p>
+            <p> {leanringData?.goal?.goalDonePercentage} %</p>
             <progress
-              value="7"
+              value="20"
               min="0"
               max="100"
               style={{ visibility: "hidden", height: 0, width: 0 }}
@@ -165,11 +179,20 @@ const Learning = () => {
 
           <div className="searning__section2_goal">
             <div>
-              <h4>Monthly Learning Goal</h4>
+              <h4
+                style={{
+                  textTransform: "capitalize",
+                }}
+              >
+                {leanringData?.goal?.goalType} Learning Goal
+              </h4>
               <small>
                 Set the target and accomplish by tracking in real time
               </small>
-              <p>23/60 hours</p>
+              <p>
+                {leanringData?.goal?.goalDone} /{" "}
+                {leanringData?.goal?.goalTarget} hours
+              </p>
             </div>
             <div>
               <HiOutlineDotsVertical fontSize={30} />
@@ -180,7 +203,17 @@ const Learning = () => {
         <div className="learning__pipeline">
           <h4>Pipeline</h4>
           <div className="learning__card">
-            <PipelineCard
+            {leanringData?.pipeline.map((pipeline) => (
+              <PipelineCard
+                key={pipeline.youtubeCourseId}
+                data={pipeline}
+                accadamy={"Ren Segal"}
+                course={"UI/UX Fundamentals"}
+                img={Ylogo}
+                company={"YouTube"}
+              />
+            ))}
+            {/* <PipelineCard
               accadamy={"Ren Segal"}
               course={"UI/UX Fundamentals"}
               img={Ulogo}
@@ -197,7 +230,7 @@ const Learning = () => {
               course={"User Interface Designing MasterClass"}
               img={Clogo}
               company={"Coursera"}
-            />
+            /> */}
           </div>
         </div>
 
@@ -205,12 +238,16 @@ const Learning = () => {
           <h4>
             Completed <FaCheck />
           </h4>
-          <PipelineCard
-            accadamy={"UI Geek"}
-            img={Ulogo}
-            company={"Udemy"}
-            course={"UI/UX Basics A-Z"}
-          />
+          {leanringData?.completed.map((item) => (
+            <PipelineCard
+              data={item}
+              key={item?.youtubeCourseId}
+              accadamy={"UI Geek"}
+              img={Ulogo}
+              company={"Udemy"}
+              course={"UI/UX Basics A-Z"}
+            />
+          ))}
         </div>
       </div>
     </div>

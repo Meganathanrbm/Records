@@ -1,28 +1,42 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
-import { useRecoilState } from "recoil";
-
-import currentUserState from "../../store/user.store";
-
 import "./dashboard.css";
 
+import { useRecoilState } from "recoil";
 import { IoMdArrowForward, IoIosArrowForward } from "react-icons/io";
 import { FaMedal } from "react-icons/fa";
 import { FaArrowTrendUp } from "react-icons/fa6";
+
+import currentUserState from "../../store/user.store";
 import ProgressCard from "../../components/progressCard/ProgressCard";
-import thumbnail from "../../assets/thumbnail.webp";
 import DashboardFooterCard from "../../components/dashboardFooterCard/DashBoardFooterCard";
+import HeatmapCalender from "./HeatmapCalender";
+
+import thumbnail from "../../assets/thumbnail.webp";
 import youtube from "../../assets/Youtube.png";
 import linkedin from "../../assets/Linkedin.png";
 import coursera from "../../assets/Coursera.png";
 import udemy from "../../assets/Udemy.png";
 import calender from "../../assets/calender.png";
-import HeatmapCalender from "./HeatmapCalender";
+import userApi from "../../apis/user.api";
 
 const DashBoard = () => {
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
+  const [dashboardData, setDashboardData] = useState(null);
+  console.log(dashboardData);
+  useEffect(() => {
+    userApi.dashboardData({
+      success: (res) => {
+        console.log("Dashboard data Success", res);
+        setDashboardData(res.data);
+      },
+      error: (err) => {
+        console.log("Dashboard Error", err);
+      },
+    });
+  }, []);
   return (
     <div className="dashboard__wrapper">
       <div className="dashboard__section1">
@@ -36,24 +50,14 @@ const DashBoard = () => {
           </div>
         </div>
 
+        {/* Course In-Progress */}
         <div className="dashboard__container2">
           <h4>Course In-Progress</h4>
           <div className="dashboard__container2_progress">
-            <ProgressCard
-              img={thumbnail}
-              title={"Interaction Design"}
-              progress={62}
-            />
-            <ProgressCard
-              img={thumbnail}
-              title={"UI/UX Design"}
-              progress={79}
-            />
-            <ProgressCard
-              img={thumbnail}
-              title={"Adobe Photoshop Masterclass"}
-              progress={23}
-            />
+            {dashboardData?.coursesInProgress.map((course) => (
+              <ProgressCard data={course} />
+            ))}
+
             <p className="dashboard__container3_seeAll">
               See all <IoIosArrowForward />
             </p>
@@ -98,44 +102,64 @@ const DashBoard = () => {
               <div className="dashboard__seciton2_role_wrapper_interest">
                 <div className="dashboard__section2__role">
                   <FaMedal fontSize={40} />
-                  <p>22</p>
+                  <p>
+                    {
+                      dashboardData?.skillRepository?.skillBadges
+                        ?.roleBasedCount
+                    }
+                  </p>
                 </div>
                 <p>Role Based</p>
               </div>
               <div className="dashboard__seciton2_role_wrapper_interest">
                 <div className="dashboard__section2__role">
                   <FaMedal fontSize={40} />
-                  <p>5</p>
+                  <p>
+                    {" "}
+                    {
+                      dashboardData?.skillRepository?.skillBadges
+                        ?.interestBasedCount
+                    }
+                  </p>
                 </div>
                 <p>Interest Based</p>
               </div>
             </div>
           </div>
 
+          {/* Learning Goal */}
           <div className="dashboard__section2_learningGoal">
             <div>
               <div className="progress-bar">
-                <p className="dashboare__section2_val">41%</p>
+                <p className="dashboare__section2_val">
+                  {(dashboardData?.goal?.goalDone /
+                    dashboardData?.goal?.goalTarget) *
+                    100}
+                  %
+                </p>
                 <progress
-                  value="41%"
+                  value={dashboardData?.goal?.goalDone}
                   min="0"
-                  max="100"
+                  max={dashboardData?.goal?.goalTarget}
                   style={{ visibility: "hidden", height: 0, width: 0 }}
                 >
-                  41
+                  {dashboardData?.goal?.goalDone}
                 </progress>
               </div>
             </div>
 
             <div className="dashboard__section2_text">
               <h4>Learning Goal</h4>
-              <p>23/60 hours</p>
+              <p>
+                {dashboardData?.goal?.goalDone} /{" "}
+                {dashboardData?.goal?.goalTarget} hours
+              </p>
             </div>
           </div>
 
           <div className="dashboard__section2_active">
             <h4>Learning Activities</h4>
-            <HeatmapCalender />
+            <HeatmapCalender learningData={dashboardData?.learningActivities} />
           </div>
 
           <div className="dashboard__section2_performance">
@@ -143,7 +167,7 @@ const DashBoard = () => {
               <h4>MoM Peerformance</h4>
               <p>
                 <FaArrowTrendUp />
-                23
+                {dashboardData?.momPercentage}
               </p>
             </div>
           </div>

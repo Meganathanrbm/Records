@@ -6,21 +6,15 @@ import { Radar } from "react-chartjs-2";
 defaults.maintainAspectRatio = false;
 defaults.responsive = true;
 
-const RadarChart = () => {
+const RadarChart = ({ percentages }) => {
+  console.log(Object.values(percentages));
   return (
     <Radar
       data={{
-        labels: [
-          "Business",
-          "Marketing",
-          "Finance",
-          "Development",
-          "Design",
-          "Sales",
-        ],
+        labels: Object.keys(percentages),
         datasets: [
           {
-            data: [65, 59, 80, 81, 56, 55],
+            data: Object.values(percentages),
           },
         ],
       }}
@@ -39,6 +33,8 @@ const RadarChart = () => {
                 weight: "bold",
               },
             },
+            suggestedMin: 0,
+            suggestedMax: 100,
             grid: {
               color: "rgba(0, 0, 0, 0.1)",
             },

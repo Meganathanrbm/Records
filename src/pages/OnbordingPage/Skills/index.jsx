@@ -4,11 +4,11 @@ import { useRecoilState } from "recoil";
 import { IoClose } from "react-icons/io5";
 
 import walktrough from "../../../assets/svg/walktrough.svg";
-import sectionsAndSkills from "../../../constants/skills.constant";
 import userApi from "../../../apis/user.api";
 import currentUserState from "../../../store/user.store";
 import skillApi from "../../../apis/skill.api";
 import "./walkthrough.css";
+import axiosInstance from "../../../configs/axios-instance";
 
 const Walktrough = () => {
   const navigate = useNavigate();
@@ -18,10 +18,10 @@ const Walktrough = () => {
   });
   const [showMore, setShowMore] = useState({});
   const [selectedSkills, setSelectedSkills] = useState([]);
+  const [allSkills, setAllSkills] = useState(null);
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
-  const sections = sectionsAndSkills;
-  const skills = selectedSkills.map((skill) => skill.name);
+  const skills = selectedSkills.map((skill) => skill.skillId);
   const [searchParams, setSearchParams] = useSearchParams({ q: "" });
   const q = searchParams.get("q");
 
@@ -33,7 +33,6 @@ const Walktrough = () => {
   };
 
   function selectSkill(item) {
-    console.log(item);
     if (selectedSkills.length < 5) {
       if (!selectedSkills.includes(item)) {
         setSelectedSkills((prevState) => [...prevState, item]);
@@ -63,7 +62,8 @@ const Walktrough = () => {
     skillApi.getSkills({
       query: q,
       success: (res) => {
-        console.log("Skills", res);
+        console.log("Skills");
+        setAllSkills(res.data.data);
       },
       error: (err) => {
         console.log("Skills Error", err);
@@ -122,7 +122,7 @@ const Walktrough = () => {
           <div
             style={{
               position: "absolute",
-              top: "9%",
+              top: "6%",
               left: "25px",
               display: "flex",
               justifyContent: "center",
@@ -208,12 +208,12 @@ const Walktrough = () => {
                       key={index}
                     >
                       <img
-                        src={item.img}
-                        alt={item.name}
+                        src={item.imageUrl}
+                        alt={item.skillName}
                         style={{ width: "20px" }}
                       />
                       <p className="text-center mt-2 pr-2 fw-semibold">
-                        {item.name}
+                        {item.skillName}
                       </p>
                     </div>
                   );
@@ -222,17 +222,17 @@ const Walktrough = () => {
             )}
           </section>
           {/*  */}
-          {sections.map((section, index) => {
+          {allSkills?.map((skills, index) => {
             return (
               <section key={index} className="mt-2">
-                <h5 style={{ padding: "0.7rem 0rem" }}>{section.title}</h5>
+                <h5 style={{ padding: "0.7rem 0rem" }}>{skills._id}</h5>
                 <div className="d-flex justify-content-start align-items-center flex-wrap">
-                  {section.items
-                    .slice(
-                      0,
-                      showMore[section.title] ? section.items.length : 10
-                    )
+                  {skills.skills
+                    .slice(0, showMore[skills._id] ? skills.skills.length : 10)
                     .map((item, index) => {
+                      {
+                        /* showMore[section.title] ? section.items.length : 10 */
+                      }
                       return (
                         <div
                           className="d-flex justify-content-around align-items-center rounded-pill pl-1 border bg-white m-1"
@@ -245,20 +245,20 @@ const Walktrough = () => {
                           onClick={() => selectSkill(item)}
                         >
                           <img
-                            src={item.img}
-                            alt={item.name}
+                            src={item.imageUrl}
+                            alt={item.skillName}
                             style={{ width: "20px" }}
                           />
                           <p className="text-center mt-2 pr-2 fw-semibold">
-                            {item.name}
+                            {item.skillName}
                           </p>
                         </div>
                       );
                     })}
-                  <p onClick={() => toggleShowMore(section.title)}>
+                  <p onClick={() => toggleShowMore(skills._id)}>
                     <a className="link-offset-2 link-underline link-underline-opacity-0 d-flex justify-content-center align-items-center">
-                      {showMore[section.title] ? "Show less" : "Show more"}
-                      {showMore[section.title] ? (
+                      {showMore[skills._id] ? "Show less" : "Show more"}
+                      {showMore[skills._id] ? (
                         <i className="bi bi-caret-up-fill"></i>
                       ) : (
                         <i className="bi bi-caret-down-fill"></i>
