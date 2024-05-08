@@ -16,8 +16,7 @@ export default function ProtectedRouter() {
   const navigate = useNavigate();
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currentLoggedInUser, setCurrentLoggedInUser] =
-    useRecoilState(currentUserState);
+  const [currentLoggedInUser, setCurrentLoggedInUser] = useRecoilState(currentUserState);
 
   const checkUserSession = () => {
     authApi.verifySession({

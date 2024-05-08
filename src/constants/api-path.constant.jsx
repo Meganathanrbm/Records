@@ -40,8 +40,8 @@ const apiPathConstants = {
   learnings: {
     getLearnings: setBaseUrlPrefix("/learnings"),
     updateGoal:setBaseUrlPrefix("/learnings/goal"),
-    addNote:setBaseUrlPrefix('/learnings/addnotes'),
-    getNotes:setBaseUrlPrefix('/learnings/getnotes')
+    addNote:setBaseUrlPrefix('/learnings/notes'),
+    getNotes:setBaseUrlPrefix('/learnings/notes')
   },
   profile: {
     updateBasicProfile: setBaseUrlPrefix("/user/profile/basic-profile"),

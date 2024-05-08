@@ -33,11 +33,11 @@ const learningApi = {
       error, 
     });
   },
-  getNotes: ({ payload, success, error }) => {
+  getNotes: ({ query, success, error }) => {
     const {
       learnings: { getNotes },
     } = apiPath;
-    axios.postRequest({ path: getNotes,payload,success, error });
+    axios.getRequest({ path: getNotes,success, error });
   },
 };
 

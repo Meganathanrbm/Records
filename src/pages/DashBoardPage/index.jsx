@@ -31,6 +31,7 @@ const DashBoard = () => {
       success: (res) => {
         console.log("Dashboard data Success", res);
         setDashboardData(res.data);
+        
       },
       error: (err) => {
         console.log("Dashboard Error", err);

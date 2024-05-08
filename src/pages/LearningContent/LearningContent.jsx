@@ -18,7 +18,7 @@ const LearningContent = () => {
   const location = useLocation();  
   const data = location.state?.myData;
   const [notesText, setNotesText] = useState(""); 
-  const [videoTime, setVideoTime] = useState("5:12");
+  const [videoTime, setVideoTime] = useState("1:42");
   const [notes, setNotes] = useState([]); 
 
   console.log(data);
@@ -36,9 +36,8 @@ const LearningContent = () => {
       },
     });
     learningApi.getNotes({
-      payload: { courseId:"cec400d2ec494030b424d962c1159b30",
+      query: { courseId:"cec400d2ec494030b424d962c1159b30",
       videoId:"2zXbRJty4vc" 
-    
       },
       success:(res)=>{
         console.log("notes",res.data.notes);
@@ -60,7 +59,7 @@ const LearningContent = () => {
   const sortedNotes = notes.sort((a, b) => b.videoTime - a.videoTime);
   const handleaddnote= ()=>{
     const timeToSeconds = (timeStr) => {
-      const [minutes, seconds] = timeStr.split(':').map(Number); 
+      const [minutes, seconds] = timeStr.split(':').map(Number);
       return (minutes * 60) + seconds; 
     };
     learningApi.AddNote({
