@@ -39,7 +39,7 @@ const Walktrough = () => {
       } else {
         setShowWarning({
           status: true,
-          message: "Aldready selected!",
+          message: "Already selected!",
         });
       }
     } else {

@@ -18,31 +18,54 @@ import learningApi from "../../apis/learning.api";
 const Learning = () => {
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
-  const [leanringData, setLeanringData] = useState();
+  const [learningData, setLearningData] = useState();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [goalHours, setGoalHours] = useState("");
+  const [goalType, setGoalType] = useState("Week");
+
+  const handleUpdateGoal = () => {
+    if (goalHours === "" || isNaN(goalHours) || goalHours <= 0) {
+      alert("Please enter a valid hourly goal.");
+      return;
+    }
+    learningApi.updateGoal({ 
+      query:{
+        goalType,
+        goalHours: parseInt(goalHours, 10), 
+      },
+      success: (res) => {
+        console.log("Goal updated successfully:", res.data);
+      },
+      error: (err) => {
+        console.error("Error updating goal:", err);
+      },
+    });
+    handleClose();
+  };
+
   useEffect(() => {
     learningApi.getLearnings({
       success: (res) => {
         console.log("response", res.data.data);
-        setLeanringData(res.data.data);
+        setLearningData(res.data.data);
       },
       error: (err) => {
         console.log("error", err);
       },
+     });
+    youtubeApi.handlegetAllCourses({
+      payload: { userId: currentLoggedInUser.userId },
+      success: (response) => {
+        console.log("response", response);
+      },
+      error: (error) => {
+        console.log("error", error);
+      },
     });
-    // youtubeApi.handlegetAllCourses({
-    //   payload: { userId: currentLoggedInUser.userId },
-    //   success: (response) => {
-    //     console.log("response", response);
-    //   },
-    //   error: (error) => {
-    //     console.log("error", error);
-    //   },
-    // });
   }, []);
 
   return (
@@ -50,7 +73,7 @@ const Learning = () => {
       <div className="learning__section">
         <h4 className="pb-3">My Learnings</h4>
         <div className="learning__card_section">
-          {leanringData?.myLearnings.map((learning) => (
+          {learningData?.myLearnings.map((learning) => (
             <LearningCard
               id={learning.youtubeCourseId}
               data={learning}
@@ -99,6 +122,9 @@ const Learning = () => {
                 }}
                 type="number"
                 width="5px"
+            value={goalHours}
+                
+                onChange={(e) => setGoalHours(e.target.value)}
                 placeholder="30"
               />{" "}
               <span style={{ color: "rgba(126, 126, 126, 1)" }}>hours /</span>
@@ -118,10 +144,13 @@ const Learning = () => {
                   fontWeight: "500",
                   margin: "0 15px",
                 }}
+
+                value={goalType} 
+                onChange={(e) => setGoalType(e.target.value)}
               >
-                <option value="Month">Week</option>
+                <option value="Week">Week</option>
                 <option value="Month">Month</option>
-                <option value="Month">Year</option>
+                <option value="Year">Year</option>
               </select>
             </div>
 
@@ -147,6 +176,7 @@ const Learning = () => {
             >
               <Button
                 className=" d-flex flex-row btn justify-content-center align-items-center gap-2"
+                onClick={handleUpdateGoal}
                 style={{
                   color: "white",
 
@@ -166,7 +196,7 @@ const Learning = () => {
         </Modal>
         <div className="learing__section2_learningGoal">
           <div className="progress-bar">
-            <p> {leanringData?.goal?.goalDonePercentage} %</p>
+            <p> {learningData?.goal?.goalDonePercentage} %</p>
             <progress
               value="20"
               min="0"
@@ -184,14 +214,14 @@ const Learning = () => {
                   textTransform: "capitalize",
                 }}
               >
-                {leanringData?.goal?.goalType} Learning Goal
+                {learningData?.goal?.goalType} Learning Goal
               </h4>
               <small>
                 Set the target and accomplish by tracking in real time
               </small>
               <p>
-                {leanringData?.goal?.goalDone} /{" "}
-                {leanringData?.goal?.goalTarget} hours
+                {learningData?.goal?.goalDone} /{" "}
+                {learningData?.goal?.goalTarget} hours
               </p>
             </div>
             <div>
@@ -203,7 +233,7 @@ const Learning = () => {
         <div className="learning__pipeline">
           <h4>Pipeline</h4>
           <div className="learning__card">
-            {leanringData?.pipeline.map((pipeline) => (
+            {learningData?.pipeline.map((pipeline) => (
               <PipelineCard
                 key={pipeline.youtubeCourseId}
                 data={pipeline}
@@ -238,7 +268,7 @@ const Learning = () => {
           <h4>
             Completed <FaCheck />
           </h4>
-          {leanringData?.completed.map((item) => (
+          {learningData?.completed.map((item) => (
             <PipelineCard
               data={item}
               key={item?.youtubeCourseId}

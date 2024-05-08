@@ -5,6 +5,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const LearningCard = ({ val, data }) => {
+  console.log(data);
   return (
     <div className="learningCard">
       <div className="learningCard__wrapper">
@@ -33,7 +34,7 @@ const LearningCard = ({ val, data }) => {
             <p>
               Enrolled On <span>Youtube</span>
             </p>
-            <Link to={{ pathname: "/learning-content", state: { data } }}>
+            <Link to={{ pathname: "/learning-content", state: { myData: data }}}>
               <button>
                 Continue Learning <FiArrowUpRight />
               </button>
