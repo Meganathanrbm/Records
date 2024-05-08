@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://records-awl1.onrender.com/api",
 });
 
 const getRequest = (data) => {
@@ -10,9 +10,9 @@ const getRequest = (data) => {
   axiosInstance.get(path, config).then(success).catch(error).finally(final);
 };
 
-const postRequest = (data) => {
+const postRequest = async (data) => {
   const { path, payload, config, success, error, final } = data;
-  axiosInstance
+  await axiosInstance
     .post(path, payload, config)
     .then(success)
     .catch(error)

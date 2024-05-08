@@ -9,46 +9,13 @@ const HeatmapCalender = ({ learningData }) => {
   const endDate = new Date(
     learningData && learningData[learningData.length - 1].date
   );
-  console.log(contributeData);
+
   // Create an array of day numbers for the month (1 to )
   const daysArray = Array(35).fill(0);
   const start = date.getDay();
   const end = endDate.getDate();
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  //Contributions data
-  const data = {
-    1: 5,
-    2: 8,
-    3: 12,
-    4: 6,
-    5: 10,
-    6: 15,
-    7: 3,
-    8: 7,
-    9: 9,
-    10: 4,
-    11: 11,
-    12: 13,
-    13: 2,
-    14: 8,
-    15: 6,
-    16: 14,
-    17: 5,
-    18: 10,
-    19: 7,
-    20: 3,
-    21: 9,
-    22: 12,
-    23: 4,
-    24: 8,
-    25: 11,
-    26: 6,
-    27: 13,
-    28: 7,
-    29: 5,
-    30: 9,
-    31: 10,
-  };
+
   useEffect(() => {
     setcontributeData(learningData);
   }, []);
