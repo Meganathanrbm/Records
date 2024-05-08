@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import youtubeApi from "../../../apis/youtube.api";
 import youtbeInstructions from "../../../constants/youtubepage.constant";
 
+import { useNavigate } from "react-router-dom";
 const YouTubeCourse = () => {
   const [youtubePlayListUrl, setYoutubePlayListUrl] = useState("");
-
+  const navigate = useNavigate();
   function convertYoutubeToCourse() {
     youtubeApi.handleCreatePlaylist({
       payload: { youtubePlayListUrl },
       success: (res) => {
         console.log("Youtube Course", res);
+        alert("success");
+        navigate('/learning')
       },
       error: (err) => {
         console.log("Youtube Course Error", err);

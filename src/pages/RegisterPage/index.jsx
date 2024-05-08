@@ -32,7 +32,21 @@ const Signin = () => {
           email: userData.email,
           isLoggedIn: true,
         });
-        navigate("/onboarding");
+        authApi.verifySession({
+          success: (res) => {
+            console.log(res.data.data);
+            if(res.data.data.isOnBoardingCompleted){
+               navigate("/dashboard");
+            }else{
+              navigate("/onboarding");
+            }
+           
+          },
+          error: () => {
+            setIsUserNotAuthenticated(true);
+          },
+        });
+        //navigate("/onboarding");
       },
       error: (err) => {
         alert("Email or Password may incorrect!");
