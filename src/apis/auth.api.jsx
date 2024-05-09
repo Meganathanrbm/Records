@@ -4,12 +4,25 @@ import apiPath from "../constants/api-path.constant";
 import axios from "../configs/axios-instance";
 
 const authApi = {
-  handleLogin: ({ payload, success, error }) => {
+  handleLogin: ({ payload, success, error, config }) => {
     const {
       auth: { login },
     } = apiPath;
+    const newConfig = {
+      ...config,
+      headers: {
+        ...(config ? config.headers : {}),
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+      },
+    };
 
-    axios.postRequest({ path: login, payload, success, error });
+    axios.postRequest({
+      path: login,
+      payload,
+      config: newConfig,
+      success,
+      error,
+    });
   },
   handleLogout: ({ success, error }) => {
     const {
