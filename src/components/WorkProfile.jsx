@@ -97,7 +97,7 @@ const WorkProfile = ({ workexperiences }) => {
       startDate: userInput.startDate,
       endDate: userInput.endDate,
       description: userInput.description,
-      skills: skill,
+      skills: userInput.skills,
     };
     if (!userInput.isEdit) {
       profileApi.addWorkExperience({

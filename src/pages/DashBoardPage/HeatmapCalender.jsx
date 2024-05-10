@@ -4,6 +4,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import "./heatmapcalender.css";
 
 const HeatmapCalender = ({ learningData }) => {
+  console.log(learningData && learningData[5 - 3 + 1].learned);
   const [contributeData, setcontributeData] = useState();
   const date = new Date(learningData && learningData[0].date);
   const endDate = new Date(
@@ -18,7 +19,7 @@ const HeatmapCalender = ({ learningData }) => {
 
   useEffect(() => {
     setcontributeData(learningData);
-  }, []);
+  }, [learningData]);
   return (
     <div
       style={{

@@ -1,7 +1,7 @@
 import user from "../store/user.store";
 
-// const BASEURL = "http://localhost:8080/api";
-const BASEURL = "https://records-awl1.onrender.com/api";
+const BASEURL = "http://localhost:8080/api";
+// const BASEURL = "https://records-awl1.onrender.com/api";
 // const BASEURL = "https://api-v2.getrecord.in/api";
 
 const setBaseUrlPrefix = (path) => {

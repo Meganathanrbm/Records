@@ -77,17 +77,7 @@ const LicenseProfile = ({ licensecertifications }) => {
       expirationDate: userInput.expirationDate,
       credentialId: userInput.credentialID,
       credentialURL: userInput.credentialURL,
-      skills: [
-        {
-          skillId: "a9cdf97638d14d06b6e6cb21c4d3c9cc",
-        },
-        {
-          skillId: "a4cb1e2bf12a46529c5eb2d5e40e9492",
-        },
-        {
-          skillId: "1197e808d7914a6ebae88f5435847d84",
-        },
-      ],
+      skills: userInput.skills,
     };
 
     if (!userInput.isEdit) {

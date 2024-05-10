@@ -79,23 +79,7 @@ const ProjectProfile = ({ projects }) => {
       endDate: userInput.endDate,
       projectLink: userInput.projectLink,
       description: userInput.description,
-      skills: [
-        {
-          skillId: "a631f26e3fef4b95b0e89d3794da4251",
-        },
-        {
-          skillId: "4d29869541794e369808d101770fcf29",
-        },
-        {
-          skillId: "6e3d7293194c4bd9abc174582134ddca",
-        },
-        {
-          skillId: "4a769826de2b4ed29a91516ebd814e7f",
-        },
-        {
-          skillId: "097ad33d6d784ca6840cc2844d28ad25",
-        },
-      ],
+      skills: userInput.skills,
     };
     if (!userInput.isEdit) {
       profileApi.addProject({

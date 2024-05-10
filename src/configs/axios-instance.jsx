@@ -2,7 +2,8 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: "https://records-awl1.onrender.com/api",
+  // baseURL: "https://records-awl1.onrender.com/api",
+  baseURL: "http://localhost:8080/api",
 });
 
 const getRequest = (data) => {

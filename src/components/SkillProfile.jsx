@@ -96,7 +96,7 @@ const SkillProfile = ({ skillRepository }) => {
                   fontWeight: "500",
                 }}
               >
-                Interst Based
+                Interest Based
               </p>
             </div>
           </div>

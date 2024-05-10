@@ -8,18 +8,10 @@ const authApi = {
     const {
       auth: { login },
     } = apiPath;
-    const newConfig = {
-      ...config,
-      headers: {
-        ...(config ? config.headers : {}),
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-      },
-    };
 
     axios.postRequest({
       path: login,
       payload,
-      config: newConfig,
       success,
       error,
     });
