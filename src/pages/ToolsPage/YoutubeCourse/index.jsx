@@ -15,6 +15,7 @@ const YouTubeCourse = () => {
         console.log("Youtube Course Error", err);
       },
     });
+    setYoutubePlayListUrl("");
   }
 
   return (
@@ -67,7 +68,10 @@ const YouTubeCourse = () => {
         <div className="d-flex justify-content-around align-items-baseline">
           {youtbeInstructions.map((item, index) => {
             return (
-              <div className="d-flex flex-column justify-content-center align-items-center p-4 gap-3 w-25">
+              <div
+                key={index}
+                className="d-flex flex-column justify-content-center align-items-center p-4 gap-3 w-25"
+              >
                 <h5>{item.title}</h5>
                 <img
                   src="/youtubecourse.png"
