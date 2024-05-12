@@ -144,6 +144,7 @@ const WorkProfile = ({ workexperiences }) => {
       ...userInput,
       title: data?.role,
       companyName: data?.companyName,
+      employeeId: data?.employeeId,
       workType: data?.workType,
       location: data?.location,
       locationType: data?.locationType,

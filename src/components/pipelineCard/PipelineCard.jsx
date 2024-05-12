@@ -2,14 +2,23 @@ import React from "react";
 import "./pipelineCard.css";
 import thumbnail from "../../assets/thumbnail.webp";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
-const PipelineCard = ({ img, company, data, }) => {
+const PipelineCard = ({
+  img,
+  company,
+  data,
+  tripleDot,
+  thumbnails,
+  title,
+  desc,
+}) => {
   return (
     <div className="pipelineCard">
       <div className="pipelineCard__wrapper">
         <div className="pipelineCard__img">
           <img
-            src={data?.courseMetaData.thumbnails.default.url}
+            src={thumbnails}
             alt=""
             width={"150px"}
             style={{
@@ -17,21 +26,23 @@ const PipelineCard = ({ img, company, data, }) => {
             }}
           />
         </div>
-        <div className="pipelineCard__text">
-          <h6>{data?.courseMetaData?.title}</h6>
-          <small>{data?.courseMetaData?.channelTitle}</small>
-          <div style={{
-            marginTop:"5px"
-          }}>
-            <img src={img} width={"25px"} alt="" />
-            <p>{company}</p>
+        <Link to={`/learning-content/${data?.youtubeCourseId}`}>
+          <div className="pipelineCard__text">
+            <h6>{title}</h6>
+            <small>{desc}</small>
+            <div
+              style={{
+                marginTop: "5px",
+              }}
+            >
+              {img && <img src={img} width={"25px"} alt="" />}
+              {company && <p>{company}</p>}
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
 
-      <div>
-        <HiOutlineDotsVertical fontSize={30} />
-      </div>
+      <div>{tripleDot && <HiOutlineDotsVertical fontSize={30} />}</div>
     </div>
   );
 };

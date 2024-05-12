@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "./learningContentSection.css";
 import { CiClock2 } from "react-icons/ci";
+import { Link, useLocation } from "react-router-dom";
+import learningApi from "../../apis/learning.api";
+import PipelineCard from "../pipelineCard/PipelineCard";
 
-const LearningContentSection = () => {
+const LearningContentSection = ({ courseId, videoIndex, setVideoIndex }) => {
+  const [data, setData] = useState();
+  useEffect(() => {
+    learningApi.getCourse({
+      suffPath: courseId,
+      success: (res) => {
+        console.log("get course success");
+        setData(res?.data?.courseContent);
+      },
+      error: (err) => {
+        console.log("get course failed", err);
+      },
+    });
+  }, []);
   return (
     <div className="learningContentSection">
       <h4>Course Content</h4>
       <div className="learningContentSection__wrapper">
         <div className="accordion" id="accordionExample">
-          <div className="accordion-item">
+          {/* <div className="accordion-item">
             <h2 className="accordion-header">
               <button
                 className="accordion-button"
@@ -331,7 +347,64 @@ const LearningContentSection = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
+          {data?.map((item, i) => (
+            <div
+              onClick={() => setVideoIndex(item.position)}
+              key={i}
+              style={
+                videoIndex == item.position
+                  ? {
+                      border: "1px solid lightgray",
+                      padding: "10px",
+                      borderRadius: "10px",
+                      display: "flex",
+                      margin: "10px",
+                      justifyContent: "space-between",
+                      gap: "10px",
+                      width: "100%",
+                      alignItems: "start",
+                      height: "auto",
+                      backgroundColor: "aliceblue",
+                      cursor: "pointer",
+                    }
+                  : {
+                      border: "1px solid lightgray",
+                      padding: "10px",
+                      borderRadius: "10px",
+                      display: "flex",
+                      margin: "10px",
+                      justifyContent: "space-between",
+                      gap: "10px",
+                      width: "100%",
+                      alignItems: "start",
+                      height: "auto",
+
+                      cursor: "pointer",
+                    }
+              }
+              className="courseContentBox"
+            >
+              <img
+                style={{
+                  borderRadius: "5px",
+                  width: "150px",
+                }}
+                src={item.thumbnails.medium.url}
+                alt=""
+              />
+              <Link></Link>
+              <p
+                style={{
+                  fontWeight: "700",
+                  marginTop: "10px",
+                  fontSize: "14px",
+                }}
+              >
+                {item.videoTitle.length < 33 ? item.videoTitle: item.videoTitle.slice(0,33)+"..."}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

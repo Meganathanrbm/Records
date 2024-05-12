@@ -71,3 +71,7 @@ li {
 .accordion__time {
   margin-left: 45px;
 }
+
+.courseContentBox:hover {
+  background: aliceblue;
+}

@@ -2,13 +2,13 @@ import React from "react";
 import "./learningCard.css";
 import thumbnail from "../../assets/thumbnail.webp";
 import { FiArrowUpRight } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LearningCard = ({ val, data }) => {
   return (
     <div className="learningCard">
       <div className="learningCard__wrapper">
-        <Link to={{ pathname: "/learning-content", state: { data } }}>
+        <Link to={`/learning-content/${data?.youtubeCourseId}`}>
           <div className="learningCard__img">
             <img
               src={data?.courseMetaData?.thumbnails?.medium?.url}
@@ -33,7 +33,7 @@ const LearningCard = ({ val, data }) => {
             <p>
               Enrolled On <span>Youtube</span>
             </p>
-            <Link to={{ pathname: "/learning-content", state: { data } }}>
+            <Link to={`/learning-content/${data?.youtubeCourseId}`}>
               <button>
                 Continue Learning <FiArrowUpRight />
               </button>

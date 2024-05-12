@@ -29,7 +29,7 @@ const navigationRoutes = [
   },
   {
     name: "LearningContent",
-    path: "/learning-content",
+    path: "/learning-content/:id",
     component: <LearningContent />,
   },
 ];

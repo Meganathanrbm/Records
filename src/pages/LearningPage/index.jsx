@@ -19,15 +19,35 @@ const Learning = () => {
   const [currentLoggedInUser, setCurrentLoggedInUser] =
     useRecoilState(currentUserState);
   const [leanringData, setLeanringData] = useState();
-
+  const [userInput, setUserInput] = useState({
+    goalType: "",
+    goalHours: 0,
+  });
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleLearningGoal = () => {
+    learningApi.updateGoals({
+      payload: userInput,
+      success: (res) => {
+        handleClose();
+
+        console.log("learning goal update success", res);
+      },
+      error: (err) => {
+        console.log("learning goal update error", err);
+      },
+    });
+    setUserInput({
+      goalType: "",
+      goalHours: 0,
+    });
+  };
   useEffect(() => {
     learningApi.getLearnings({
       success: (res) => {
-        console.log("response", res.data.data);
+        console.log("learnings response", res.data.data);
         setLeanringData(res.data.data);
       },
       error: (err) => {
@@ -100,11 +120,18 @@ const Learning = () => {
                 type="number"
                 width="5px"
                 placeholder="30"
+                value={userInput.goalHours}
+                onChange={(e) =>
+                  setUserInput({ ...userInput, goalHours: e.target.value })
+                }
               />{" "}
               <span style={{ color: "rgba(126, 126, 126, 1)" }}>hours /</span>
               <select
                 name="date"
                 id=""
+                onChange={(e) =>
+                  setUserInput({ ...userInput, goalType: e.target.value })
+                }
                 style={{
                   backgroundColor: "#F3F3F3",
                   border: "1px solid #D1D5DB",
@@ -147,6 +174,7 @@ const Learning = () => {
             >
               <Button
                 className=" d-flex flex-row btn justify-content-center align-items-center gap-2"
+                onClick={handleLearningGoal}
                 style={{
                   color: "white",
 
@@ -173,7 +201,7 @@ const Learning = () => {
               max="100"
               style={{ visibility: "hidden", height: 0, width: 0 }}
             >
-              71%
+              {leanringData?.goal?.goalDonePercentage}%
             </progress>
           </div>
 
@@ -209,8 +237,12 @@ const Learning = () => {
                 data={pipeline}
                 accadamy={"Ren Segal"}
                 course={"UI/UX Fundamentals"}
+                thumbnails={pipeline.courseMetaData.thumbnails.medium.url}
+                title={pipeline.courseMetaData?.title}
+                desc={pipeline.courseMetaData?.channelTitle}
                 img={Ylogo}
                 company={"YouTube"}
+                tripleDot={true}
               />
             ))}
             {/* <PipelineCard
@@ -246,6 +278,9 @@ const Learning = () => {
               img={Ulogo}
               company={"Udemy"}
               course={"UI/UX Basics A-Z"}
+              thumbnails={item.courseMetaData.thumbnails.medium.url}
+              title={item.courseMetaData?.title}
+              desc={item.courseMetaData?.channelTitle}
             />
           ))}
         </div>

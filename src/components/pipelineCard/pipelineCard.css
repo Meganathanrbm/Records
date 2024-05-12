@@ -37,11 +37,13 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .pipelineCard__text div p {
   top: 9px;
   left: 5px;
+  
 }
 
 .pipelineCard svg {

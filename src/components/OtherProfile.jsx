@@ -6,7 +6,7 @@ import OtherActivitiesModal from "./modals/OtherActivitiesModal";
 import profileApi from "../apis/profile.api";
 
 const OtherProfile = ({ activities }) => {
-  console.log(activities);
+  // console.log(activities);
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
   const [isVerified, setIsVerified] = useState(false);
@@ -49,7 +49,7 @@ const OtherProfile = ({ activities }) => {
     handleClose();
     handleVerifModalShow();
   };
-  console.log(userInput);
+  // console.log(userInput);
   const handleForm2Submit = (e) => {
     e.preventDefault();
     setIsVerified(true);

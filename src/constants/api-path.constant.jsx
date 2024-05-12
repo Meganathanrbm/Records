@@ -40,6 +40,13 @@ const apiPathConstants = {
   },
   learnings: {
     getLearnings: setBaseUrlPrefix("/learnings"),
+    updateProgress: setBaseUrlPrefix("/learnings/progress"),
+    updateGoals: setBaseUrlPrefix("/learnings/goal"),
+    getNotes: setBaseUrlPrefix("/learnings/notes"),
+    addNotes: setBaseUrlPrefix("/learnings/notes"),
+    updateNotes: setBaseUrlPrefix("/learnings/notes"),
+    deleteNotes: setBaseUrlPrefix("/learnings/notes"),
+    getCourse: setBaseUrlPrefix("/learnings/course/"),
   },
   profile: {
     updateBasicProfile: setBaseUrlPrefix("/user/profile/basic-profile"),
@@ -47,13 +54,16 @@ const apiPathConstants = {
     updateEducation: setBaseUrlPrefix("/user/profile/education/"),
     addWorkExpereince: setBaseUrlPrefix("/user/profile/work-experience"),
     updateWorkExpereince: setBaseUrlPrefix("/user/profile/work-experience/"),
-    addLicenseCertification:setBaseUrlPrefix("/user/profile/license-certification"),
-    updateLicenseCertification:setBaseUrlPrefix("/user/profile/license-certification/"),
-    addProject:setBaseUrlPrefix("/user/profile/project"),
-    updateProject:setBaseUrlPrefix("/user/profile/project/"),
-    addActivity:setBaseUrlPrefix("/user/profile/activity"),
-    updateActivity:setBaseUrlPrefix("/user/profile/activity/"),
-
+    addLicenseCertification: setBaseUrlPrefix(
+      "/user/profile/license-certification"
+    ),
+    updateLicenseCertification: setBaseUrlPrefix(
+      "/user/profile/license-certification/"
+    ),
+    addProject: setBaseUrlPrefix("/user/profile/project"),
+    updateProject: setBaseUrlPrefix("/user/profile/project/"),
+    addActivity: setBaseUrlPrefix("/user/profile/activity"),
+    updateActivity: setBaseUrlPrefix("/user/profile/activity/"),
   },
 };
 

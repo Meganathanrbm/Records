@@ -9,7 +9,7 @@ const WorkModal = ({
   userInput,
   setUserInput,
 }) => {
-
+  console.log(userInput)
   return (
     <Modal show={show} onHide={handleClose} size="lg" animation={false}>
       <Modal.Header closeButton>
@@ -162,11 +162,11 @@ const WorkModal = ({
               name="type"
               id=""
             >
-              <option selected>Select</option>
+              {/* <option selected>Select</option> */}
               <option>Office</option>
               <option>WFH</option>
-              <option>hybrid</option>
-              <option>remote</option>
+              <option>Hybrid</option>
+              <option>Remote</option>
             </select>
           </div>
         </div>
@@ -232,9 +232,9 @@ const WorkModal = ({
             }
             className="form-check-input"
             type="checkbox"
-            value=""
+            
             id="flexCheckDefault"
-            required
+            value={userInput.isCurrentlyWorking}
           />
           <label
             style={{ color: "black" }}

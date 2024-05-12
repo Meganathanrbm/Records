@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
+import learningApi from "../../apis/learning.api";
 
-const YoutubePlayer = ({ videoId }) => {
-  const [totalHours, setTotalHours] = useState(0);
+const YoutubePlayer = ({ videoId, courseId, totalHours, setTotalHours }) => {
+
   const [player, setPlayer] = useState(null);
   const [startTime, setStartTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -37,16 +38,36 @@ const YoutubePlayer = ({ videoId }) => {
   };
 
   useEffect(() => {
+    return () => {
+      learningApi.updateProgress({
+        payload: {
+          courseId: courseId,
+          videoId: videoId,
+          progress: totalHours,
+        },
+        success: (res) => {
+          console.log("updated progress success", res);
+        },
+        error: (err) => {
+          console.log("update progress failed", err);
+        },
+      });
+    };
+  }, []);
+
+  useEffect(() => {
     if (player) {
       const interval = setInterval(() => {
         if (isPlaying) {
           const currentTime = player.getCurrentTime();
-          const elapsedHours = (currentTime - startTime) / 3600; //  60 seconds * 60 minutes = hour
+          const elapsedHours = Math.floor(currentTime - startTime); // / 3600; //  60 seconds * 60 minutes = hour
           setTotalHours((prevTotalHours) => prevTotalHours + elapsedHours);
           setStartTime(currentTime);
         }
       }, 1000);
-      return () => clearInterval(interval);
+      return () => {
+        clearInterval(interval);
+      };
     }
   }, [player, isPlaying, startTime]);
   return (
@@ -62,19 +83,3 @@ const YoutubePlayer = ({ videoId }) => {
 };
 
 export default YoutubePlayer;
-
-{
-  /* <div className="learningVideo_container">
-                <iframe
-                  className="learning_iframe"
-                  width="800"
-                  height="420"
-                  src={videoLink}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
-              </div> */
-}

@@ -10,17 +10,21 @@ const youtubeApi = {
     } = apiPath;
     axios.postRequest({ path: createCourse, payload, success, error });
   },
-  handlegetAllCourses: ({ payload, success, error }) => {
+  handlegetAllCourses: ({ success, error }) => {
     const {
       youtube: { CourseByUserId },
     } = apiPath;
-    axios.getRequest({ path: CourseByUserId, payload, success, error });
+    axios.getRequest({ path: CourseByUserId, success, error });
   },
-  handleGetCourseById: ({ payload, success, error }) => {
+  handleGetCourseById: ({ suffPath, success, error }) => {
     const {
       youtube: { courseDetails },
     } = apiPath;
-    axios.getRequest({ path: courseDetails, payload, success, error });
+    axios.getRequest({
+      path: courseDetails(suffPath),
+      success,
+      error,
+    });
   },
 };
 

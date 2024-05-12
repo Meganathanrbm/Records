@@ -7,7 +7,8 @@ const axiosInstance = axios.create({
 });
 
 const getRequest = (data) => {
-  const { path, config, success, error, final } = data;
+  const { path, config, payload, success, error, final } = data;
+
   axiosInstance.get(path, config).then(success).catch(error).finally(final);
 };
 
@@ -30,8 +31,12 @@ const putRequest = (data) => {
 };
 
 const deleteRequest = (data) => {
-  const { path, success, error, final } = data;
-  axiosInstance.delete(path).then(success).catch(error).finally(final);
+  const { path, payload, config, success, error, final } = data;
+  axiosInstance
+    .delete(path, { data: payload })
+    .then(success)
+    .catch(error)
+    .finally(final);
 };
 
 export default {

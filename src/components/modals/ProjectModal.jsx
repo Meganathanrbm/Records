@@ -132,6 +132,7 @@ const ProjectModal = ({
               className="form-check-input"
               type="checkbox"
               id="flexCheckDefault"
+              value={userInput.isWorking}
             />
             <label
               style={{ color: "black", marginLeft: "5px" }}
