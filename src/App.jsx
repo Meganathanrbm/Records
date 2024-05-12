@@ -23,6 +23,7 @@ import ProtectedRouter from "./middleware/ProtectedRouter";
 import io from "socket.io-client";
 
 function App() {
+
   const router = createBrowserRouter([
     {
       path: "/",

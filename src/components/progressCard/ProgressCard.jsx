@@ -1,6 +1,7 @@
 import React from "react";
 import "./progressCard.css";
 import { IoMdArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const ProgressCard = ({ data }) => {
   return (
@@ -11,9 +12,11 @@ const ProgressCard = ({ data }) => {
           alt=""
           width={"230px"}
         />
-        <h6>
-          {data?.courseMetaData?.title} <IoMdArrowForward />
-        </h6>
+        <Link to={`/learning-content/${data?.youtubeCourseId}`}>
+          <h6>
+            {data?.courseMetaData?.title} <IoMdArrowForward />
+          </h6>
+        </Link>
         <div className="progressCard__wrapper_progress">
           <p>Progress</p>
           <progress
@@ -26,7 +29,7 @@ const ProgressCard = ({ data }) => {
         </div>
 
         <small>
-          Learnings from <span style={{ fontWeight: "bold" }}>Udemy</span>
+          Learnings from <span style={{ fontWeight: "bold" }}>Youtube</span>
         </small>
       </div>
     </div>

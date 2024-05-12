@@ -3,7 +3,7 @@ import axios from "axios";
 const axiosInstance = axios.create({
   withCredentials: true,
   // baseURL: "https://records-awl1.onrender.com/api",
-  baseURL: "http://localhost:8080/api",
+  baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
 const getRequest = (data) => {

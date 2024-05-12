@@ -1,6 +1,6 @@
 import user from "../store/user.store";
 
-const BASEURL = "http://localhost:8080/api";
+const BASEURL = import.meta.env.VITE_BACKEND_URL;
 // const BASEURL = "https://records-awl1.onrender.com/api";
 // const BASEURL = "https://api-v2.getrecord.in/api";
 
