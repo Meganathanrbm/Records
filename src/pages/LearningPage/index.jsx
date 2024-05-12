@@ -132,6 +132,7 @@ const Learning = () => {
                 onChange={(e) =>
                   setUserInput({ ...userInput, goalType: e.target.value })
                 }
+                value={userInput.goalType}
                 style={{
                   backgroundColor: "#F3F3F3",
                   border: "1px solid #D1D5DB",
@@ -146,9 +147,9 @@ const Learning = () => {
                   margin: "0 15px",
                 }}
               >
-                <option value="Month">Week</option>
+                <option value="Week">Week</option>
                 <option value="Month">Month</option>
-                <option value="Month">Year</option>
+                <option value="Year">Year</option>
               </select>
             </div>
 

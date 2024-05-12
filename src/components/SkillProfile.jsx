@@ -28,7 +28,7 @@ const SkillProfile = ({ skillRepository }) => {
         </div>
         <div className="rounded-4 border mt-3 " style={{ padding: "1rem" }}>
           <h4 style={{ fontWeight: 700, fontSize: "18px" }}>
-            interest Based Skills
+            Interest Based Skills
           </h4>
           <p style={{ color: "#8F8F8F", fontSize: "13px", fontWeight: "400" }}>
             Skills that you earn for your will.

@@ -83,10 +83,9 @@ const DashBoard = () => {
               </p>
               <div className="dashbord__container3__dropdownMenu">
                 <select name="" id="cars">
-                  <option value="">Select</option>
-                  <option value="">#</option>
-                  <option value="">#</option>
-                  <option value="">#</option>
+                  <option value="">Youtube</option>
+                  <option value="">Udemy</option>
+                  <option value="">Coursera</option>
                 </select>
               </div>
             </div>

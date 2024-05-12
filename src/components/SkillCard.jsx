@@ -7,16 +7,25 @@ const SkillCard = ({ text, endorsment }) => {
       // style={{ border: "solid 1px #1212124D ", width: "max-content" }}
     >
       <div>
-        <img src={skillLogo} alt="skillLogo" style={{ height: "50px" }} />
+        <img src={skillLogo} alt="skillLogo" style={{ height: "30px" }} />
       </div>
       <div className="d-flex flex-column  ">
-        <h5 style={{ fontSize: "16px", fontWeight: 700, margin: 0 }}>
-          {text} <img src={verified} alt="verified" width={15} />
+        <h5
+          style={{
+            fontSize: "14px",
+            fontWeight: 700,
+            margin: 0,
+            display: "flex",
+            alignItems: "center",
+            gap:"5px"
+          }}
+        >
+          {text} <img src={verified} alt="verified" width={10} />
         </h5>
         <p
           style={{
             color: "#8F8F8F",
-            fontSize: "14px",
+            fontSize: "12px",
             fontWeight: 600,
             margin: 0,
           }}

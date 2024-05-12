@@ -94,8 +94,8 @@ const LicenseProfileModal = ({
               className="form-select"
               name="type"
               id=""
+              value={userInput.doneVia}
             >
-              <option selected>Select</option>
               <option>Office</option>
               <option>WFH</option>
             </select>

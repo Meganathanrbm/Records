@@ -9,7 +9,7 @@ const WorkModal = ({
   userInput,
   setUserInput,
 }) => {
-  console.log(userInput)
+  console.log(userInput);
   return (
     <Modal show={show} onHide={handleClose} size="lg" animation={false}>
       <Modal.Header closeButton>
@@ -100,6 +100,7 @@ const WorkModal = ({
               onClick={(e) =>
                 setUserInput({ ...userInput, workType: e.target.value })
               }
+              value={userInput.workType}
               style={{
                 backgroundColor: "#F3F3F3",
                 color: "#858585",
@@ -109,7 +110,6 @@ const WorkModal = ({
               name="type"
               id=""
             >
-              <option selected>Select</option>
               <option>Full-Time</option>
               <option>Part-Time</option>
               <option>Contract</option>
@@ -161,6 +161,7 @@ const WorkModal = ({
               className="form-select"
               name="type"
               id=""
+              value={userInput.locationType}
             >
               {/* <option selected>Select</option> */}
               <option>Office</option>
@@ -232,7 +233,6 @@ const WorkModal = ({
             }
             className="form-check-input"
             type="checkbox"
-            
             id="flexCheckDefault"
             value={userInput.isCurrentlyWorking}
           />
